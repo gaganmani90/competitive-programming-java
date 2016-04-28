@@ -132,12 +132,41 @@ public class BinarySearchTree {
 			display(root.right);
 		}
 	}
+	
+	public void connectNextRight(Node root){
+		root.nextRight = null;
+		connectNextRightRec(root);
+		
+	}
+	private void connectNextRightRec(Node p) {
+		// Base case
+        if (p == null) {
+            return;
+        }
+ 
+        // Set the nextRight pointer for p's left child
+        if (p.left != null) {
+            p.left.nextRight = p.right;
+        }
+ 
+        // Set the nextRight pointer for p's right child
+        // p->nextRight will be NULL if p is the right most child at its level
+        if (p.right != null) {
+            p.right.nextRight = (p.nextRight != null) ? p.nextRight.left : null;
+        }
+ 
+        // Set nextRight for other nodes in pre order fashion
+        connectNextRightRec(p.left);
+        connectNextRightRec(p.right);
+		
+	}
+
 	public static void main(String arg[]){
 		BinarySearchTree b = new BinarySearchTree();
 		b.insert(3);b.insert(8);
 		b.insert(1);b.insert(4);b.insert(6);b.insert(2);b.insert(10);b.insert(9);
 		b.insert(20);b.insert(25);b.insert(15);b.insert(16);
-		System.out.println("Original Tree : ");
+		System.out.println("Original Tree root is : "+b.root.data);
 		b.display(b.root);		
 		System.out.println("");
 		System.out.println("Check whether Node with value 4 exists : " + b.find(4));
@@ -147,6 +176,8 @@ public class BinarySearchTree {
 		b.display(root);
 		System.out.println("\n Delete Node with Two children (10) : " + b.delete(10));		
 		b.display(root);
+		
+		b.connectNextRight(b.root);
 	}
 }
 
@@ -154,9 +185,11 @@ class Node{
 	int data;
 	Node left;
 	Node right;	
+	Node nextRight;
 	public Node(int data){
 		this.data = data;
 		left = null;
 		right = null;
+		nextRight = null;
 	}
 }
