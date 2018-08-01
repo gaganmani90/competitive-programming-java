@@ -4,8 +4,6 @@ package programs;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-
 public class RecycledPairsTest {
 
     @Test
@@ -23,5 +21,12 @@ public class RecycledPairsTest {
         Assert.assertEquals(2, RecycledPairs.numberOfRecycledPairs(new int[]{32, 42, 13, 23, 9, 5, 31}));
         Assert.assertEquals(1, RecycledPairs.numberOfRecycledPairs(new int[]{1212, 2121}));
         Assert.assertEquals(2, RecycledPairs.numberOfRecycledPairs(new int[]{1212, 2121,1212, 2121}));
+    }
+
+    @Test
+    public void numberOfRecycledPairs_optimized_test(){
+        Assert.assertEquals(2, RecycledPairs.numberOfRecycledPairs_optimized(new int[]{32, 42, 13, 23, 9, 5, 31}));
+        Assert.assertEquals(1, RecycledPairs.numberOfRecycledPairs_optimized(new int[]{1212, 2121}));
+        Assert.assertEquals(2, RecycledPairs.numberOfRecycledPairs_optimized(new int[]{1212, 2121,1212, 2121}));
     }
 }
