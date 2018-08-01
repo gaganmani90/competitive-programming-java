@@ -1,5 +1,8 @@
 package programs;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 /**
  * Number of recycled pairs in an array
  Given an array of integers arr[], find the number of recycled pairs in the array.
@@ -51,5 +54,29 @@ public class RecycledPairs {
         else{
             return false;
         }
+    }
+
+    public static int numberOfRecycledPairs(int[] arr){
+        int pairCount = 0;
+        Arrays.sort(arr);
+
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] == -1){
+                continue;
+            }
+            for(int j = i+1; j < arr.length; j++){
+                if(arr[j] == -1){
+                    continue;
+                }
+
+                if(isRecycledPairs(arr[i], arr[j])){
+                    pairCount++;
+                    arr[i] = arr[j] = -1;
+                }
+            }
+
+        }
+
+        return pairCount;
     }
 }
