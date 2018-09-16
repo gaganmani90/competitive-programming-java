@@ -32,6 +32,12 @@ public class MergeSortedArrays {
         return sortedArray;
     }
 
+    /**
+     * Another solution by using mergeSort
+     * @param arr1
+     * @param arr2
+     * @return
+     */
     static int[] byMergeSort(int[] arr1, int[] arr2){
         int[] sortedArray = new int[arr1.length+arr2.length];
 
