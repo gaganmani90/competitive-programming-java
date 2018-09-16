@@ -31,4 +31,41 @@ public class MergeSortedArrays {
         }
         return sortedArray;
     }
+
+    static int[] byMergeSort(int[] arr1, int[] arr2){
+        int[] sortedArray = new int[arr1.length+arr2.length];
+
+        int l = 0;
+        int r = 0;
+        int i = 0;
+
+        while(l < arr1.length && r < arr2.length){
+            if(arr1[l] < arr2[r]){
+                sortedArray[i] = arr1[l];
+                l++;
+            }
+            else{
+                sortedArray[i] = arr2[r];
+                r++;
+            }
+            i++;
+        }
+
+        //add remaining items
+        while(i < sortedArray.length){
+            if(l < arr1.length){
+                sortedArray[i] = arr1[l];
+                l++;
+            }
+            if(r < arr2.length){
+                sortedArray[i] = arr2[r];
+                r++;
+            }
+            i++;
+        }
+
+        return sortedArray;
+    }
+
+
 }
