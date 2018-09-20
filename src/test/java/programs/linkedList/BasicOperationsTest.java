@@ -7,20 +7,20 @@ import org.junit.Test;
  * @author gagamani
  * @date 9/20/18
  */
-public class LinkedListOperationsTest {
+public class BasicOperationsTest {
 
 
     @Test
     public void print() {
-        Assert.assertEquals("", LinkedListOperations.print(null));
-        Assert.assertEquals("1234", LinkedListOperations.print(createLinkedList(new int[]{1, 2, 3, 4})));
-        Assert.assertEquals("112233", LinkedListOperations.print(createLinkedList(new int[]{11, 22, 33})));
+        Assert.assertEquals("", BasicOperations.print(null));
+        Assert.assertEquals("1234", BasicOperations.print(createLinkedList(new int[]{1, 2, 3, 4})));
+        Assert.assertEquals("112233", BasicOperations.print(createLinkedList(new int[]{11, 22, 33})));
 
     }
 
     @Test
     public void reverse(){
-        Assert.assertEquals("321", LinkedListOperations.print(LinkedListOperations.reverse(createLinkedList(new int[]{1,2,3}))));
+        Assert.assertEquals("321", BasicOperations.print(BasicOperations.reverse(createLinkedList(new int[]{1,2,3}))));
     }
 
     private Node createLinkedList(int[] arr) {

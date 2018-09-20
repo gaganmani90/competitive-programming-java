@@ -4,10 +4,10 @@ package programs.linkedList;
  * @author gagamani
  * @date 9/20/18
  */
-public class LinkedListOperations {
+public class BasicOperations {
 
 
-    static String print(Node node) {
+    public static String print(Node node) {
         StringBuilder stringBuilder = new StringBuilder();
         if (node == null) {
             stringBuilder.append("");
