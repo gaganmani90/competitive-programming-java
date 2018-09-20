@@ -18,6 +18,11 @@ public class LinkedListOperationsTest {
 
     }
 
+    @Test
+    public void reverse(){
+        Assert.assertEquals("321", LinkedListOperations.print(LinkedListOperations.reverse(createLinkedList(new int[]{1,2,3}))));
+    }
+
     private Node createLinkedList(int[] arr) {
         Node head, current ;
         head = current = null;
