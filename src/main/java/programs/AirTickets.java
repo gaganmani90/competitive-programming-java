@@ -24,7 +24,6 @@ import java.util.Map;
 public class AirTickets {
 
     /**
-     * TODO: handle edge cases
      * @param itinerary
      * @return
      */
