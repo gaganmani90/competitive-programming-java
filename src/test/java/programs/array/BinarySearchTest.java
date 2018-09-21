@@ -27,9 +27,15 @@ public class BinarySearchTest {
      */
     @Test
     public void testSearch() throws Exception {
-        Assert.assertEquals(2, BinarySearch.search(new int[]{1, 2, 3, 4}, 3));
-        Assert.assertEquals(-1, BinarySearch.search(new int[]{1, 2, 4, 3}, 3));
-        Assert.assertEquals(0, BinarySearch.search(new int[]{234, 345, 678, 987}, 234));
+        Assert.assertEquals(2, BinarySearch.search(new int[]{1, 2, 3, 4}, 3, BinarySearch.SearchType.RECURSIVE));
+        Assert.assertEquals(-1, BinarySearch.search(new int[]{1, 2, 4, 3}, 3,BinarySearch.SearchType.RECURSIVE));
+        Assert.assertEquals(0, BinarySearch.search(new int[]{234, 345, 678, 987}, 234,BinarySearch.SearchType.RECURSIVE));
+
+        Assert.assertEquals(2, BinarySearch.search(new int[]{1, 2, 3, 4}, 3, BinarySearch.SearchType.ITERATIVE));
+        Assert.assertEquals(-1, BinarySearch.search(new int[]{1, 2, 4, 3}, 3,BinarySearch.SearchType.ITERATIVE));
+        Assert.assertEquals(0, BinarySearch.search(new int[]{234, 345, 678, 987}, 234,BinarySearch.SearchType.ITERATIVE));
+
+
     }
 
 
