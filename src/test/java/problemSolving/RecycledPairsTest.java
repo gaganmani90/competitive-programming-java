@@ -3,6 +3,7 @@ package problemSolving;
 
 import org.junit.Assert;
 import org.junit.Test;
+import problemSolving.general.RecycledPairs;
 
 public class RecycledPairsTest {
 

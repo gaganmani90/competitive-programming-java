@@ -2,6 +2,7 @@ package problemSolving;
 
 import org.junit.Assert;
 import org.junit.Test;
+import problemSolving.general.AirTickets;
 
 /**
  * @author gagamani
