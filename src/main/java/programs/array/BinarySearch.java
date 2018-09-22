@@ -1,7 +1,9 @@
 package programs.array;
 
 /**
- * You have a sorted array but it has been shifted. Perform binary search
+ * 1. Perform binary iterative and recursive binary search
+ * 2. Find minimum in a rotated sorted array by using binary search
+ * 3. Find an element in a rotated sorted array by using binary search
  *
  * @author gagamani
  * @date 9/20/18
@@ -56,24 +58,21 @@ public class BinarySearch {
     private static int searchRotationUtil(int[] arr, int low, int high, int key) {
         if (high < low) {
             return -1;
-        }
-        if (high == low) {
+        } else if (high == low) {
             return arr[low] == key ? low : -1;
+        } else {
+            int mid = (low + high) / 2;
+            if (arr[mid] == key) {
+                return mid;
+            }
+            /**
+             * search in right half of the array if following conditions are met
+             */
+            if ((arr[mid] < key && arr[high] > arr[mid]) || (arr[mid] > key && arr[high] < arr[mid])) {
+                return searchRotationUtil(arr, mid + 1, high, key);
+            }
+            return searchRotationUtil(arr, low, mid - 1, key);
         }
-
-        int mid = (low + high) / 2;
-
-        if (arr[mid] == key) {
-            return mid;
-        }
-
-        /**
-         * search in right half of the array if the following conditions are met
-         */
-        if ((arr[mid] < key && arr[high] > arr[mid]) || (arr[mid] > key && arr[high] < arr[mid])) {
-            return searchRotationUtil(arr, mid + 1, high, key);
-        }
-        return searchRotationUtil(arr, low, mid - 1, key);
     }
 
 
