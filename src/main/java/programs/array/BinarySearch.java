@@ -30,6 +30,7 @@ public class BinarySearch {
         }
     }
 
+
     /**
      * Finds minimum element from rotated sorted array
      *
@@ -37,14 +38,44 @@ public class BinarySearch {
      * @return
      */
     static int findMinimum(int[] arr) {
-        if (arr.length == 1) {
-            return arr[0];
-        }
-        if (arr.length == 1) {
-            return Math.min(arr[0], arr[1]);
-        }
         return minUtil(arr, 0, arr.length - 1);
     }
+
+    /**
+     * Searches rotated sorted array by using modified version of
+     * binary search
+     *
+     * @param arr i.e. [4,1,2,3]
+     * @param key
+     * @return returns index of searched element or -1 if not found
+     */
+    static int searchRotatedArray(int[] arr, int key) {
+        return searchRotationUtil(arr, 0, arr.length - 1, key);
+    }
+
+    private static int searchRotationUtil(int[] arr, int low, int high, int key) {
+        if (high < low) {
+            return -1;
+        }
+        if (high == low) {
+            return arr[low] == key ? low : -1;
+        }
+
+        int mid = (low + high) / 2;
+
+        if (arr[mid] == key) {
+            return mid;
+        }
+
+        /**
+         * search in right half of the array if the following conditions are met
+         */
+        if ((arr[mid] < key && arr[high] > arr[mid]) || (arr[mid] > key && arr[high] < arr[mid])) {
+            return searchRotationUtil(arr, mid + 1, high, key);
+        }
+        return searchRotationUtil(arr, low, mid - 1, key);
+    }
+
 
     private static int minUtil(int[] arr, int low, int high) {
         if (high < low)
@@ -77,17 +108,6 @@ public class BinarySearch {
 
     }
 
-
-    /**
-     * TODO: complete this
-     *
-     * @param arr i.e. [4,1,2,3]
-     * @param key
-     * @return
-     */
-    static int search_rotatedArray(int[] arr, int key) {
-        return 0;
-    }
 
     /**
      * Iterative binary search

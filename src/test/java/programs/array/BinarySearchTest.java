@@ -39,7 +39,7 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void testFineMinimum(){
+    public void testFindMinimum(){
         Assert.assertEquals(1, BinarySearch.findMinimum(new int[]{4,5,1,2,3}));
         Assert.assertEquals(1, BinarySearch.findMinimum(new int[]{1,2,3}));
         Assert.assertEquals("min on the right",1, BinarySearch.findMinimum(new int[]{3,4,5,6,7,8,1,2}));
@@ -48,5 +48,12 @@ public class BinarySearchTest {
         Assert.assertEquals("one element",1, BinarySearch.findMinimum(new int[]{1}));
     }
 
-
-} 
+    @Test
+    public void testSearchRotatedArray() throws Exception {
+        Assert.assertEquals(1, BinarySearch.searchRotatedArray(new int[]{4,1,2,3}, 1));
+        Assert.assertEquals(5, BinarySearch.searchRotatedArray(new int[]{4,5,6,7,8,1,2,3}, 1));
+        Assert.assertEquals(-1, BinarySearch.searchRotatedArray(new int[]{4,5,6,7,8,1,2,3}, 11));
+        Assert.assertEquals(-1, BinarySearch.searchRotatedArray(new int[]{4,5,6,7,8,1,2,3}, 11));
+        Assert.assertEquals(0, BinarySearch.searchRotatedArray(new int[]{4}, 4));
+    }
+}
