@@ -2,8 +2,6 @@ package hackerrank.projectEuler;
 
 import java.util.Scanner;
 
-import programs.Utility;
-
 public class PathSumTwoWays {
 
 	public static void main(String[] args) {
