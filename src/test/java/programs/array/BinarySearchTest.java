@@ -38,5 +38,15 @@ public class BinarySearchTest {
 
     }
 
+    @Test
+    public void testFineMinimum(){
+        Assert.assertEquals(1, BinarySearch.findMinimum(new int[]{4,5,1,2,3}));
+        Assert.assertEquals(1, BinarySearch.findMinimum(new int[]{1,2,3}));
+        Assert.assertEquals("min on the right",1, BinarySearch.findMinimum(new int[]{3,4,5,6,7,8,1,2}));
+        Assert.assertEquals("min on the left",1, BinarySearch.findMinimum(new int[]{9,1,2,3,4,5,6,7,8}));
+        Assert.assertEquals("min in the middle",1, BinarySearch.findMinimum(new int[]{3,1,2}));
+        Assert.assertEquals("one element",1, BinarySearch.findMinimum(new int[]{1}));
+    }
+
 
 } 

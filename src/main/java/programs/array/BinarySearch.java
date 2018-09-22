@@ -30,6 +30,53 @@ public class BinarySearch {
         }
     }
 
+    /**
+     * Finds minimum element from rotated sorted array
+     *
+     * @param arr i.e. [5,1,2,3,4]; [4,5,6,7,8,1,2,3]
+     * @return
+     */
+    static int findMinimum(int[] arr) {
+        if (arr.length == 1) {
+            return arr[0];
+        }
+        if (arr.length == 1) {
+            return Math.min(arr[0], arr[1]);
+        }
+        return minUtil(arr, 0, arr.length - 1);
+    }
+
+    private static int minUtil(int[] arr, int low, int high) {
+        if (high < low)
+            return arr[0];
+        if (high == low) {
+            return arr[low];
+        }
+        int mid = (low + high) / 2;
+
+        //check if next element is the min i.e. [4,5,6,7,8,1,2,3]
+        if (mid < high && arr[mid + 1] < arr[mid]) {
+            return arr[mid + 1];
+        }
+
+        //check if mid itself  is the min i.e. [4,1,2,3]
+        if (mid > low && arr[mid - 1] > arr[mid]) {
+            return arr[mid];
+        }
+
+        /**
+         * Decide whether we need to go to left half or right half
+         * Examples:
+         * [4,5,6,7,1,2,3], mid element = 7, it will go right
+         * [9,1,2,3,4,5,6,7,8], mid element = 4, it will go left
+         */
+        if (arr[high] > arr[mid])
+            return minUtil(arr, low, mid - 1);
+        return minUtil(arr, mid + 1, high);
+
+
+    }
+
 
     /**
      * TODO: complete this
@@ -44,6 +91,7 @@ public class BinarySearch {
 
     /**
      * Iterative binary search
+     *
      * @param arr
      * @param left
      * @param right
@@ -52,7 +100,7 @@ public class BinarySearch {
      */
     private static int binarySearch_iterative(int[] arr, int left, int right, int key) {
         while (left <= right) {
-             int mid = (left + right) / 2;
+            int mid = (left + right) / 2;
 
             if (arr[mid] == key) {
                 return mid;
