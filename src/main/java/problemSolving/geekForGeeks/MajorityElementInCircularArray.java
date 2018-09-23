@@ -1,7 +1,6 @@
 package problemSolving.geekForGeeks;
 
 /**
- * TODO:
  * https://www.geeksforgeeks.org/majority-element-in-a-circular-array-of-0s-and-1s/
  * <p>
  * <pre>
