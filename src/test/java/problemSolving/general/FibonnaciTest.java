@@ -1,4 +1,4 @@
-package problemSolving;
+package problemSolving.general;
 
 import org.junit.Assert;
 import org.junit.Test;

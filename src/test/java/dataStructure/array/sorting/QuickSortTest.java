@@ -24,13 +24,6 @@ public class QuickSortTest {
     public void after() throws Exception {
     }
 
-    /**
-     * Method: sort(int[] arr)
-     */
-    @Test
-    public void testSort() throws Exception {
-//TODO: Test goes here... 
-    }
 
 
     /**
