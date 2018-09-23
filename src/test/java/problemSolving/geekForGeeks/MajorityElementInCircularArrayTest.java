@@ -38,6 +38,15 @@ public class MajorityElementInCircularArrayTest {
 
         Assert.assertEquals("unequal sub arrays",false, MajorityElementInCircularArray.isMajority
                 (new int[]{1, 1, 1, 1, 1}, 3, 3, 1));
+
+        Assert.assertEquals("check for 3",true, MajorityElementInCircularArray.isMajority
+                (new int[]{1,2,3,1,1,3,1,2,1,3,3,3}, 3, 3, 1));
+
+        Assert.assertEquals("all elements equal",false, MajorityElementInCircularArray.isMajority
+                (new int[]{1,2,3,1,2,3}, 2, 3, 1));
+
+        Assert.assertEquals("all same elements",true, MajorityElementInCircularArray.isMajority
+                (new int[]{4,4,4,4,4,4}, 2, 3, 4));
     }
 
     @Test
