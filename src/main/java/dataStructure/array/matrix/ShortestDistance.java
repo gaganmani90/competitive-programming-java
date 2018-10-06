@@ -71,8 +71,6 @@ public class ShortestDistance {
         LinkedList<Node> queue = new LinkedList<>(); //store traversed elements
         queue.add(source);
         this.isVisited[source.row][source.col] = true;
-        int count = 0;
-
 
         while (!queue.isEmpty()) {
             Node node = queue.poll();
