@@ -33,11 +33,11 @@ public class LongestCommonSubstring {
         StringBuilder builder = new StringBuilder();
         int imax = 0, jmax = 0;
 
-        for (int i = 0; i < Length.length; i++) {
-            for (int j = 0; j < Length[0].length; j++) {
-                if (i == 0 || j == 0) {
-                    Length[i][j] = 0;
-                } else if (a.charAt(i - 1) == b.charAt(j - 1)) {
+        for (int i = 1; i < Length.length; i++) {
+            for (int j = 1; j < Length[0].length; j++) {
+
+                //if characters are same then increase length by 1 from diagonally
+                 if (a.charAt(i - 1) == b.charAt(j - 1)) {
                     Length[i][j] = Length[i - 1][j - 1] + 1;
                     if(Length[i][j] > len){
                         len = Length[i][j];
@@ -45,9 +45,10 @@ public class LongestCommonSubstring {
                         jmax = j;
                     }
 
-                } else {
+                } else { //if char are not same then longest common substring is 0
                     Length[i][j] = 0;
                 }
+
             }
         }
 
