@@ -1,7 +1,6 @@
 package dataStructure.string;
 
 /**
- * TODO: Dynamic programming solution impl
  * Longest Common Substring in an Array of Strings
  * <pre>
  * Input : grace graceful disgraceful gracefully
