@@ -1,5 +1,8 @@
 package problemSolving.dynamic_programming;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * * The rod-cutting problem is the following. Given a rod of length n inches and a table of prices pi for i D 1; 2; : : : ; n,
  * * determine the maximum revenue rn obtain- able by cutting up the rod and selling the pieces.
@@ -94,7 +97,7 @@ public class RodCuttingProblem {
      * When solving a particular subproblem, we have already solved all of the smaller subproblems its solution depends upon,
      * and we have saved their solutions. We solve each sub- problem only once, and when we first see it,
      * we have already solved all of its prerequisite subproblems.
-     * 
+     *
      * For the bottom-up dynamic-programming approach, BOTTOM-UP-CUT-ROD uses the natural ordering of the subproblems:
      * a problem of size i is “smaller” than a subproblem of size j if i < j .
      * Thus, the procedure solves subproblems of sizes j D 0;1;:::;n, in that order.
@@ -125,6 +128,38 @@ public class RodCuttingProblem {
         for (int i = 1; i < subproblems.length; i++) {
             subproblems[i] = Integer.MIN_VALUE;
         }
+    }
+
+    /**
+     * Returns list of rod set which yields the maximum revenue
+     * @param n
+     * @return
+     */
+    List<Integer> optimalRods(int n){
+        int[] subproblemResults = new int[n + 1];//first element is 0 for intialization purpose
+        int[] rodLengthResults = new int[n+1];
+        initialize(subproblemResults);
+        initialize(rodLengthResults);
+
+        for (int i = 0; i < n; i++) {
+            int max = Integer.MIN_VALUE;
+            for (int j = 0; j <= i; j++) {
+                if(max < this.prices[j] + subproblemResults[i - j]){
+                    max = this.prices[j] + subproblemResults[i - j];
+                    rodLengthResults[i+1] = j+1;
+                }
+            }
+            subproblemResults[i + 1] = max;
+        }
+
+        List<Integer> optimamRods = new ArrayList<>();
+        while(n > 0 ){
+            optimamRods.add(rodLengthResults[n]);
+            n = n - rodLengthResults[n];
+
+        }
+
+        return optimamRods;
     }
 
 }
