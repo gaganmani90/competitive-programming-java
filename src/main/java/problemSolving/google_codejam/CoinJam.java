@@ -1,4 +1,4 @@
-package problemSolving.codejam;
+package problemSolving.google_codejam;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
