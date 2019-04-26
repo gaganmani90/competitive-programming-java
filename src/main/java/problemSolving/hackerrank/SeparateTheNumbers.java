@@ -59,6 +59,32 @@ public class SeparateTheNumbers {
 
 	}
 
+	/**
+	 *Simple solution
+	 * @param
+	 * @return
+	 */
+	public static String separateNumbers2(String input){
+		if (input.charAt(0) == '0') {
+			return "NO";
+		}
+
+		for (int length = 1; length * 2 <= input.length(); length++) {
+			long firstNumber = Long.parseLong(input.substring(0, length));
+
+			StringBuilder sequence = new StringBuilder();
+			long number = firstNumber;
+			while (sequence.length() < input.length()) {
+				sequence.append(number);
+				number++;
+			}
+			if (sequence.toString().equals(input)) {
+				return firstNumber+"";
+			}
+		}
+		return "NO";
+	}
+
 	private static void separateNumbers(String s) {
 		int range = 1, num, prevNum = 0;
 		boolean isIncremental = true;
