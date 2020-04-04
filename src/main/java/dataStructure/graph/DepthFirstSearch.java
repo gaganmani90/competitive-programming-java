@@ -7,6 +7,12 @@ import java.util.List;
  * Traverse a given node in DFS fashion
  */
 public class DepthFirstSearch {
+    /**
+     * Traverse dfs in a recursive fashion
+     * @param vertex
+     * @param graph
+     * @return string such as "2 1 0 3"
+     */
     public static String dfcRecursive(int vertex, Graph graph) {
         StringBuilder dfsTraversal = new StringBuilder();
         boolean visited[] = new boolean[graph.numberOfVertices];
