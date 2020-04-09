@@ -23,6 +23,22 @@ public class ReorderDatalogFilesTest {
                 }));
 
     }
+
+    @Test
+    public void performanceTest() {
+        long t1 = System.currentTimeMillis();
+        for(int i = 0; i < 1000; i++) {
+            ReorderDatalogFiles.reorderLogFiles(new String[]{
+                    "dig1 8 1 5 1",
+                    "let1 art can",
+                    "dig2 3 6",
+                    "let2 own kit dig",
+                    "let3 art zero"
+            });
+        }
+        long t2 = System.currentTimeMillis();
+        System.out.println("Runtime of 100 loop: "+(t2-t1)+" msec");
+    }
 }
 
 

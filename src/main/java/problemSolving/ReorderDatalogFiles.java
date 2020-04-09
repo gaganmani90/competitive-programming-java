@@ -1,7 +1,6 @@
 package problemSolving;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -37,15 +36,14 @@ import java.util.List;
  */
 public class ReorderDatalogFiles {
     /**
-     * TODO: improve time complexity
      * @param logs
      * @return
      */
     public static String[] reorderLogFiles(String[] logs) {
         List<Log> sortedLogs = new ArrayList<>();
         for(String log : logs) {
-            String[] words = log.split(" ");
-            sortedLogs.add(new Log(words[0], Arrays.copyOfRange(words, 1, words.length)));
+            String[] words = log.split(" ",2); //identifier and rest of the string
+            sortedLogs.add(new Log(words[0], words[1]));
         }
         Collections.sort(sortedLogs, new LogComparator());
         return convertToArray(sortedLogs);
@@ -74,16 +72,13 @@ enum LogType {
 class Log {
     String identifier;
     LogType type = LogType.LETTER;
-    List<String> logs;
+    String logs;
 
-    public Log(String identifier, String... logs){
+    public Log(String identifier, String logs){
         this.identifier = identifier;
-        this.logs = new ArrayList<>();
-        for(String log : logs) {
-            this.logs.add(log);
-        }
+        this.logs = logs;
         //set log type
-        if(isDigit(logs[0].charAt(0))){
+        if(isDigit(logs.charAt(0))){
             this.type = LogType.DIGIT;
         }
     }
@@ -97,11 +92,7 @@ class Log {
     }
 
     public String toString() {
-        String out = this.identifier + " ";
-        for(String log : logs) {
-            out += (log + " ");
-        }
-        return out.trim();
+        return this.identifier + " " + this.logs;
     }
 }
 
@@ -119,10 +110,8 @@ class LogComparator implements Comparator<Log> {
     public int compare(Log l1, Log l2) {
         //compare letter-logs
         if(l1.type.equals(LogType.LETTER) && l2.type.equals(LogType.LETTER)){
-            if(compareTwoLists(l1.logs, l2.logs) == 0) {
-                return l1.identifier.compareTo(l2.identifier);
-            }
-            return compareTwoLists(l1.logs, l2.logs);
+            int compareResult = l1.logs.compareTo(l2.logs);
+            return (compareResult == 0) ? l1.identifier.compareTo(l2.identifier) : compareResult;
         }
         //compare digit-logs
         else if (l1.type.equals(LogType.DIGIT) && l2.type.equals(LogType.DIGIT)){
@@ -130,22 +119,4 @@ class LogComparator implements Comparator<Log> {
         }
         return l2.type.value - l1.type.value; //compare digit and letter logs
     }
-
-    private int compareTwoLists(List<String> l1, List<String> l2) {
-        int len = Math.min(l1.size(), l2.size());
-        for(int i = 0; i < len; i++) {
-            if(l1.get(i).compareTo(l2.get(i)) < 0 ) {
-                return -1;
-            }
-            else if(l1.get(i).compareTo(l2.get(i)) > 0 ) {
-                return 1;
-            }
-            else {
-                continue;
-            }
-        }
-        return 0;
-    }
-
-
 }
