@@ -16,4 +16,14 @@ public class Node {
          this.data = data;
      }
 
+     public String toString() {
+          String val = " ";
+          Node current = this;
+          while(current != null) {
+               val += current.data+ " ";
+               current = current.next;
+          }
+          return val.trim();
+     }
+
 }

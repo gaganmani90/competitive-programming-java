@@ -41,4 +41,21 @@ public class BasicOperations {
 
         return node;
     }
+
+    public static Node arrayToLinkedList(int[] arr) {
+        Node head, current ;
+        head = current = null;
+
+        for (int i = 0; i < arr.length; i++) {
+            Node temp = new Node(arr[i]);
+            if(head == null){
+                head = temp;
+            }
+            else{
+                current.next = temp;
+            }
+            current = temp;
+        }
+        return head;
+    }
 }
