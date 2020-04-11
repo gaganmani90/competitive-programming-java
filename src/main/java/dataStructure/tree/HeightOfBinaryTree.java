@@ -6,7 +6,7 @@ public class HeightOfBinaryTree {
         if(root == null) {
             return 0;
         }
-        return Math.max(height(root.left) + 1, height(root.right) + 1);
+        return 1 + Math.max(height(root.left), height(root.right));
     }
 
 }

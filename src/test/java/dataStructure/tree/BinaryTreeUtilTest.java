@@ -11,10 +11,13 @@ public class BinaryTreeUtilTest {
 
     @Test
     public void test_arrayToBinaryTree(){
-        Node root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1,2,3,5});
+        Node root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1,2,3,4,5});
         Assert.assertEquals(1, root.data);
+
         Assert.assertEquals(2, root.left.data);
-        Assert.assertEquals(5, root.left.left.data);
+        Assert.assertEquals(4, root.left.left.data);
+        Assert.assertEquals(5, root.left.right.data);
+
         Assert.assertEquals(3, root.right.data);
 
     }
