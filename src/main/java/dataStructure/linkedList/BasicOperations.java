@@ -7,19 +7,6 @@ package dataStructure.linkedList;
 public class BasicOperations {
 
 
-    public static String print(Node node) {
-        StringBuilder stringBuilder = new StringBuilder();
-        if (node == null) {
-            stringBuilder.append("");
-        } else {
-            while (node != null) {
-                stringBuilder.append(node.data);
-                node = node.next;
-            }
-        }
-        return stringBuilder.toString();
-    }
-
     /**
      * input - 1 2 3 4
      * output - 4 3 2 1
@@ -42,6 +29,11 @@ public class BasicOperations {
         return node;
     }
 
+    /**
+     * Util method useful for unit tests
+     * @param arr
+     * @return
+     */
     public static Node arrayToLinkedList(int[] arr) {
         Node head, current ;
         head = current = null;
