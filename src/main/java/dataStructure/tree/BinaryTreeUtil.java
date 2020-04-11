@@ -5,40 +5,41 @@ package dataStructure.tree;
  * @author gagamani
  * @date 9/27/18
  */
-public class BinaryTree {
+public class BinaryTreeUtil {
+
 
     /**
      * TODO: complete this
-     * Array to BST conversion provided given array is sorted
-     * @param sortedArray
+     * Array to binary tree conversion in level order
+     * Example: {1, 2, 3, 4, 5, 6}
+     * Binary tree would be :
+     *                    1
+     *                  / \
+     *                 2   3
+     *                / \ /
+     *               4  5 6
+     * @param tree
      * @return
      */
-    static Node sortedArrayToBst(int[] sortedArray) {
-        if (sortedArray == null) {
-            return null;
-        }
-        if (sortedArray.length == 1) {
-            return new Node(sortedArray[0]);
-        }
-
-        return arrayToBstUtil(sortedArray, 0, sortedArray.length - 1);
+    public static Node arrayToBinaryTree(int[] tree) {
+        return insertLevelOrder(tree, new Node(tree[0]), 0);
     }
 
-    private static Node arrayToBstUtil(int[] arr, int start, int end) {
+    private static Node insertLevelOrder(int[] arr, Node root, int i) {
+        // Base case for recursion
+        if (i < arr.length) {
+            Node temp = new Node(arr[i]);
+            root = temp;
 
-        //base case
-        if (start > end) {
-            return null;
+            // insert left child
+            root.left = insertLevelOrder(arr, root.left,
+                    2 * i + 1);
+
+            // insert right child
+            root.right = insertLevelOrder(arr, root.right,
+                    2 * i + 2);
         }
-
-        int mid = (start + end) / 2;
-        Node node = new Node(mid);
-
-        node.left = arrayToBstUtil(arr, start, mid - 1);
-        node.right = arrayToBstUtil(arr, mid + 1, end);
-
-        return node;
-
+        return root;
     }
 
     /**
@@ -47,16 +48,14 @@ public class BinaryTree {
      * @param traversalType
      * @return
      */
-    static String traversal(Node node, TraversalType traversalType) {
+    public static String traversal(Node node, TraversalType traversalType) {
         switch (traversalType) {
             case PREORDER:
                 return preOrderTraversal(node);
-            case INORDER:
-                return inOrderTraversal(node);
             case POSTORDER:
                 return postOrderTraversal(node);
             default:
-                return null;
+                return inOrderTraversal(node);
         }
 
     }
