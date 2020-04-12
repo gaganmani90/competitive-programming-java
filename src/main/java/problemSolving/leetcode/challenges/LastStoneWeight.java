@@ -32,6 +32,12 @@ import java.util.Arrays;
  *     1 <= stones[i] <= 1000
  */
 public class LastStoneWeight {
+
+    /**
+     * O(NxN)
+     * @param stones
+     * @return
+     */
     public static int lastStoneWeight(int[] stones) {
         int weight = -2; //it means that there are weights remaining
         if(stones.length == 1) {
