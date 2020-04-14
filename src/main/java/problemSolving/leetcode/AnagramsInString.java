@@ -38,6 +38,7 @@ import java.util.Map;
  */
 public class AnagramsInString {
     private Map<Character, Integer> anagramMap = new HashMap<>();
+    private Map<Character, Integer> tempMap = new HashMap<>();
     private int windowSize = 0;
     private String fullString;
 
@@ -56,6 +57,7 @@ public class AnagramsInString {
         windowSize = anagram.length();
         this.fullString = str;
         this.anagramMap = getCharacterMap(anagram); //prepare hashmap
+        this.tempMap = getCharacterMap(str.substring(0, windowSize)); //initialize
 
         boolean isAnagram = false;
         int index = -1;
@@ -97,20 +99,33 @@ public class AnagramsInString {
      * @return
      */
     private int getAnagramIndex(int startIndex) {
+        int index = -1;
         if(startIndex + windowSize > fullString.length()){
             return -1;
         }
-        String compareAnagramWord = fullString.substring(startIndex, startIndex + windowSize);
-        return isAnagram(compareAnagramWord) ? startIndex : -1;
+        if(startIndex == 0) {
+            index = tempMap.equals(anagramMap) ? 0 : -1;
+        } else {
+            //remove previous char from temp map and add the new one
+            char c = fullString.charAt(startIndex - 1);
+            if ((tempMap.get(c) > 0)) {
+                tempMap.merge(c, -1, Integer::sum);
+            } else {
+                tempMap.remove(c);
+            }
+            tempMap.merge(fullString.charAt(startIndex + windowSize - 1), 1, Integer::sum);
+            index = tempMap.equals(anagramMap) ? startIndex : -1;
+        }
+
+        return index;
     }
 
-    /**
-     * compare both the hashmaps
-     * @param word
-     * @return
-     */
-    private boolean isAnagram(String word) {
-        Map<Character, Integer> wordMap = getCharacterMap(word);
-        return wordMap.equals(anagramMap);
+    private boolean isAnagram(String a, String b) {
+        int[] temp = new int[128];
+        for(int i = 0; i < a.length(); i++) {
+            temp[a.charAt(i)] += 1;
+        }
+        return true;
     }
+
 }
