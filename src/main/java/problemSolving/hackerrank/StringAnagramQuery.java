@@ -2,24 +2,39 @@ package problemSolving.hackerrank;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 public class StringAnagramQuery {
     public static List<Integer> stringAnagram(List<String> dictionary, List<String> queries) {
         List<Integer> countAnagram = new ArrayList<>();
-
+        HashMap<String, Integer> sortedAnagramsQueryMap = new HashMap<>();
         for(String query : queries) {
             int count = 0;
+            query = sort(query);
+            if(sortedAnagramsQueryMap.containsKey(query)) {
+                countAnagram.add(sortedAnagramsQueryMap.get(query));
+                continue;
+            }
             for(String word : dictionary) {
+
                 if(isAnagram(query, word)) {
                     count++;
                 }
             }
+            //update map
+            sortedAnagramsQueryMap.put(query, count);
             countAnagram.add(count);
         }
 
         return countAnagram;
 
+    }
+
+    private static String sort(String s) {
+        return s.chars().sorted()
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
     }
 
     /**
@@ -28,7 +43,7 @@ public class StringAnagramQuery {
      * @param query
      * @return
      */
-     static boolean isAnagram(String s, String query) {
+    static boolean isAnagram(String s, String query) {
         if(s.length() != query.length()) {
             return false;
         }
