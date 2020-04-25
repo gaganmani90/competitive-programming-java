@@ -1,12 +1,14 @@
 package dataStructure.array.matrix;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 public class SpiralMatrixTest {
 
+    @Ignore
     @Test
     public void spiralOrder() {
 

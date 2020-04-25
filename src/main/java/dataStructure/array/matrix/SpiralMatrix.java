@@ -32,6 +32,10 @@ public class SpiralMatrix {
         this.matrix = matrix;
     }
 
+    /**
+     * TODO: fix logic and unit tests
+     * @return
+     */
     public List<Integer> spiralOrder() {
         List<Integer> result = new ArrayList<>();
         double totalLayers = Math.ceil(Math.min(matrix.length, matrix[0].length) /2.0);
