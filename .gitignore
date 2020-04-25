@@ -3,3 +3,5 @@ src/test/test.iml
 src/main/main.iml
 CompetitiveProgramming.iml
 target/
+RemoteSystemsTempFiles/
+_config.yml
