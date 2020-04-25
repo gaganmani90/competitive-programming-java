@@ -12,4 +12,4 @@ public class ReformatTheStringTest {
         Assert.assertEquals("c2o0v1i9d", ReformatTheString.reformat("covid2019"));
         Assert.assertEquals("1a2b3", ReformatTheString.reformat("ab123"));
     }
-}git status
+}
