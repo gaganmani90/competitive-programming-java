@@ -130,6 +130,7 @@ public class June13 {
         while (high > low) {
             int mid = (low + high) / 2, flowers = 0, bouq = 0;
 
+            //check how many flowers can be bloomed with "mid" number of days
             for (int i = 0; i < bloomDay.length; i++) {
                 if(bloomDay[i] > mid) { //flower can not bloom, it breaks the adjacency
                     flowers = 0;
