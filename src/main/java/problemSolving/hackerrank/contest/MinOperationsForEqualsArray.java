@@ -2,9 +2,6 @@ package problemSolving.hackerrank.contest;
 
 import org.junit.Assert;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * You have an array arr of length n where arr[i] = (2 * i) + 1 for all valid values of i (i.e. 0 <= i < n).
  *
@@ -27,9 +24,11 @@ import java.util.Map;
  * Output: 9
  */
 public class MinOperationsForEqualsArray {
-    Map<Integer, Integer> answersMap = new HashMap<>();
     public static int minOperations(int n) {
         int ways = 0;
+        /**
+         * No need to calculate array.
+         */
         for(int i = n-1; i >= n/2; i--) {
             ways += (getValue(i) - n);
         }
