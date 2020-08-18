@@ -60,6 +60,21 @@ public class BinaryTreeUtil {
 
     }
 
+    public static boolean isValidBST(Node root) {
+        return validBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
+    }
+
+    private static boolean validBSTUtil(Node node, int min, int max) {
+        if (node == null) {
+            return true;
+        }
+        if (node.data < min || node.data > max) {
+            return false;
+        }
+
+        return validBSTUtil(node.left, min, node.data-1) && validBSTUtil(node.right, node.data+1, max);
+    }
+
     private static String preOrderTraversal(Node node) {
         if (node == null) {
             return "";

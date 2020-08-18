@@ -35,4 +35,27 @@ public class BinaryTreeUtilTest {
         Assert.assertEquals(BinaryTreeUtil.TraversalType.POSTORDER.toString(),"40 50 20 30 10", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.POSTORDER).trim());
     }
 
+    @Test
+    public void testValidBST_false() {
+        Node node = new Node(10);
+        node.right = new Node(30);
+        node.left = new Node(20);
+        node.left.left = new Node(40);
+        node.left.right = new Node(50);
+
+        Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
+    }
+
+    @Test
+    public void testValidBST_true() {
+        Node node = new Node(20);
+        node.right = new Node(30);
+        node.left = new Node(10);
+        node.left.left = new Node(5);
+        node.left.right = new Node(11);
+        node.right.right = new Node(31);
+
+        Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
+    }
+
 }
