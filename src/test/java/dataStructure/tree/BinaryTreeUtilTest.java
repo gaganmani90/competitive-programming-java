@@ -43,7 +43,7 @@ public class BinaryTreeUtilTest {
         node.left.left = new Node(40);
         node.left.right = new Node(50);
 
-        Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
+        Assert.assertFalse(BinaryTreeUtil.isValidBST(node));
     }
 
     @Test
@@ -56,6 +56,22 @@ public class BinaryTreeUtilTest {
         node.right.right = new Node(31);
 
         Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
+    }
+
+    @Test
+    public void minBSTValue() {
+        Node node = new Node(20);
+        node.right = new Node(30);
+        node.right.right = new Node(31);
+        node.left = new Node(10);
+        node.left.left = new Node(5);
+        node.left.right = new Node(11);
+
+
+        Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
+        Assert.assertEquals(5, BinaryTreeUtil.minimumBSTValue(node));
+        Assert.assertEquals(30, BinaryTreeUtil.bstSuccessor(node, 20));
+        Assert.assertEquals(31, BinaryTreeUtil.bstSuccessor(node, 30));
     }
 
 }

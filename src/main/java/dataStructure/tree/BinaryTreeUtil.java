@@ -13,11 +13,12 @@ public class BinaryTreeUtil {
      * Array to binary tree conversion in level order
      * Example: {1, 2, 3, 4, 5, 6}
      * Binary tree would be :
-     *                    1
-     *                  / \
-     *                 2   3
-     *                / \ /
-     *               4  5 6
+     * 1
+     * / \
+     * 2   3
+     * / \ /
+     * 4  5 6
+     *
      * @param tree
      * @return
      */
@@ -44,6 +45,7 @@ public class BinaryTreeUtil {
 
     /**
      * Binary tree traversal
+     *
      * @param node
      * @param traversalType
      * @return
@@ -60,9 +62,53 @@ public class BinaryTreeUtil {
 
     }
 
+    /**
+     * Minimum BST value
+     * @param node
+     * @return
+     */
+    public static int minimumBSTValue(Node node) {
+        if (node == null) {
+            return -1;
+        } else if (node.left == null) {
+            return node.data;
+        }
+        return minimumBSTValue(node.left);
+    }
+
+    /**
+     * Validates binary search tree
+     * @param root
+     * @return
+     */
     public static boolean isValidBST(Node root) {
         return validBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
+
+    /**
+     * the minimum value in right subtree is successor
+     * @param node
+     * @param key
+     * @return
+     */
+    public static int bstSuccessor(Node node, int key) {
+        //find the key
+        if (node.data == key) {
+            if (node.right != null) {
+                Node tmp = node.right;
+                while (tmp.left != null) {
+                    tmp = tmp.left;
+                }
+                return tmp.data;
+            }
+        } else if (key > node.data) {
+           return bstSuccessor(node.right, key);
+        } else if (key < node.data) {
+           return  bstSuccessor(node.left, key);
+        }
+        return key;
+    }
+
 
     private static boolean validBSTUtil(Node node, int min, int max) {
         if (node == null) {
@@ -72,7 +118,7 @@ public class BinaryTreeUtil {
             return false;
         }
 
-        return validBSTUtil(node.left, min, node.data-1) && validBSTUtil(node.right, node.data+1, max);
+        return validBSTUtil(node.left, min, node.data - 1) && validBSTUtil(node.right, node.data + 1, max);
     }
 
     private static String preOrderTraversal(Node node) {
@@ -98,7 +144,6 @@ public class BinaryTreeUtil {
         return postOrderTraversal(node.left).concat(postOrderTraversal(node.right)).concat(node.toString());
 
     }
-
 
 
     enum TraversalType {
