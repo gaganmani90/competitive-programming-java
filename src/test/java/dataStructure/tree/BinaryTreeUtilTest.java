@@ -10,8 +10,8 @@ import org.junit.Test;
 public class BinaryTreeUtilTest {
 
     @Test
-    public void test_arrayToBinaryTree(){
-        Node root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1,2,3,4,5});
+    public void test_arrayToBinaryTree() {
+        Node root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1, 2, 3, 4, 5});
         Assert.assertEquals(1, root.data);
 
         Assert.assertEquals(2, root.left.data);
@@ -23,16 +23,16 @@ public class BinaryTreeUtilTest {
     }
 
     @Test
-    public void testTraversal(){
+    public void testTraversal() {
         Node node = new Node(10);
         node.right = new Node(30);
         node.left = new Node(20);
         node.left.left = new Node(40);
         node.left.right = new Node(50);
 
-        Assert.assertEquals(BinaryTreeUtil.TraversalType.PREORDER.toString(),"10 20 40 50 30", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.PREORDER).trim());
-        Assert.assertEquals(BinaryTreeUtil.TraversalType.INORDER.toString(),"40 20 50 10 30", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.INORDER).trim());
-        Assert.assertEquals(BinaryTreeUtil.TraversalType.POSTORDER.toString(),"40 50 20 30 10", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.POSTORDER).trim());
+        Assert.assertEquals(BinaryTreeUtil.TraversalType.PREORDER.toString(), "10 20 40 50 30", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.PREORDER).trim());
+        Assert.assertEquals(BinaryTreeUtil.TraversalType.INORDER.toString(), "40 20 50 10 30", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.INORDER).trim());
+        Assert.assertEquals(BinaryTreeUtil.TraversalType.POSTORDER.toString(), "40 50 20 30 10", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.POSTORDER).trim());
     }
 
     @Test
@@ -44,6 +44,7 @@ public class BinaryTreeUtilTest {
         node.left.right = new Node(50);
 
         Assert.assertFalse(BinaryTreeUtil.isValidBST(node));
+
     }
 
     @Test
@@ -72,6 +73,24 @@ public class BinaryTreeUtilTest {
         Assert.assertEquals(5, BinaryTreeUtil.minimumBSTValue(node));
         Assert.assertEquals(30, BinaryTreeUtil.bstSuccessor(node, 20));
         Assert.assertEquals(31, BinaryTreeUtil.bstSuccessor(node, 30));
+    }
+
+    @Test
+    public void kthSmallest() {
+        Node root = createBST();
+        Assert.assertEquals(5, BinaryTreeUtil.kthSmallest(root, 1));
+        Assert.assertEquals(11, BinaryTreeUtil.kthSmallest(root, 3));
+    }
+
+    private static Node createBST() {
+        Node node = new Node(20);
+        node.right = new Node(30);
+        node.left = new Node(10);
+        node.left.left = new Node(5);
+        node.left.right = new Node(11);
+        node.right.right = new Node(31);
+
+        return node;
     }
 
 }

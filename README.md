@@ -10,3 +10,9 @@ You will have access to most common data structure and algorithmic questions and
 * Clone git repository on your machine
 * Open the project in Intellij 
 * Enable Maven framework.
+
+## Algorithms 
+### Tree
+* Morris inorder traversal
+### String
+* KMP algo for pattern searching

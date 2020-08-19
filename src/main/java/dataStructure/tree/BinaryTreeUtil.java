@@ -1,6 +1,8 @@
 package dataStructure.tree;
 
 
+import java.util.Stack;
+
 /**
  * @author gagamani
  * @date 9/27/18
@@ -44,6 +46,7 @@ public class BinaryTreeUtil {
     }
 
     /**
+     * 1.
      * Binary tree traversal
      *
      * @param node
@@ -62,7 +65,9 @@ public class BinaryTreeUtil {
 
     }
 
+
     /**
+     * 2.
      * Minimum BST value
      * @param node
      * @return
@@ -77,6 +82,7 @@ public class BinaryTreeUtil {
     }
 
     /**
+     * 3.
      * Validates binary search tree
      * @param root
      * @return
@@ -86,6 +92,7 @@ public class BinaryTreeUtil {
     }
 
     /**
+     * 4.
      * the minimum value in right subtree is successor
      * @param node
      * @param key
@@ -107,6 +114,30 @@ public class BinaryTreeUtil {
            return  bstSuccessor(node.left, key);
         }
         return key;
+    }
+
+    /**
+     * 5.
+     * K th smallest element in BST
+     * @param root
+     * @param k
+     * @return
+     */
+    public static int kthSmallest(Node root, int k) {
+        Stack<Node> stack = new Stack<>();
+        //use inorder traversal and keep track of count
+        while(true) {
+            while(root != null) {
+                stack.add(root);
+                root = root.left;
+            }
+            root = stack.pop();
+            if(--k == 0) {
+                return root.data;
+            }
+            root = root.right;
+        }
+
     }
 
 
