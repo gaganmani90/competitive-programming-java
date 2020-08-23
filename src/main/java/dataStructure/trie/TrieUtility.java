@@ -52,6 +52,19 @@ public class TrieUtility {
         return current.isEndOfWord() && current.getContent().equals(word);
     }
 
+    public boolean findPrefix(String prefix) {
+        TrieNode current = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            char ch = prefix.charAt(i);
+            TrieNode node = current.getChildren().get(ch);
+            if (node == null) {
+                return false;
+            }
+            current = node; //keep moving current node into word's direction
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         TrieUtility trie = new TrieUtility();
         trie.insert("Programming");
@@ -63,6 +76,7 @@ public class TrieUtility {
 
         Assert.assertTrue(trie.find("is"));
         Assert.assertTrue(trie.find("Programming"));
+        Assert.assertTrue(trie.findPrefix("Programm"));
         Assert.assertFalse(trie.find("Programm"));
     }
 
