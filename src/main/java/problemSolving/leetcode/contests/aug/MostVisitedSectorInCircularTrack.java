@@ -1,4 +1,4 @@
-package problemSolving.hackerrank.contest;
+package problemSolving.leetcode.contests.aug;
 
 import org.junit.Assert;
 
