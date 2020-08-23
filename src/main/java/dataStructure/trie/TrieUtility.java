@@ -14,6 +14,7 @@ public class TrieUtility {
 
     /**
      * 1. INSERT
+     *
      * @param word
      */
     public void insert(String word) {
@@ -26,7 +27,7 @@ public class TrieUtility {
              * then set current node to that referenced node. Otherwise, create a new node,
              * set the letter equal to the current letter, and also initialize current node to this new node
              */
-            if(current.getChildren() != null) {
+            if (current.getChildren() != null) {
                 current = current.getChildren().computeIfAbsent(l, c -> new TrieNode());
             }
         }
@@ -36,6 +37,7 @@ public class TrieUtility {
 
     /**
      * 2. SEARCH
+     *
      * @param word
      * @return
      */
@@ -52,6 +54,12 @@ public class TrieUtility {
         return current.isEndOfWord() && current.getContent().equals(word);
     }
 
+    /**
+     * 3. FIND PREFIX
+     *
+     * @param prefix
+     * @return
+     */
     public boolean findPrefix(String prefix) {
         TrieNode current = root;
         for (int i = 0; i < prefix.length(); i++) {
@@ -63,6 +71,37 @@ public class TrieUtility {
             current = node; //keep moving current node into word's direction
         }
         return true;
+    }
+
+    /**
+     * 4. FIND BY PATTERN.
+     * It handles "." wild card
+     *
+     * @return
+     */
+    public boolean findByPattern(String word) {
+        return findByPatternUtil(word, root);
+    }
+
+    private boolean findByPatternUtil(String word, TrieNode trieNode) {
+        for (int i = 0; i < word.length(); i++) {
+            char c = word.charAt(i);
+            //check all possibilities with wild card in place
+            if (!trieNode.getChildren().containsKey(c)) {
+                if (c == '.') { //wild card baby, do the hard work now
+                    //traverse all child nodes
+                    for(TrieNode currNode : trieNode.getChildren().values()) {
+                        if(findByPatternUtil(word.substring(i+1), currNode)) {
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            } else {
+                trieNode = trieNode.getChildren().get(c);
+            }
+        }
+        return trieNode.isEndOfWord();
     }
 
     public static void main(String[] args) {
@@ -78,9 +117,9 @@ public class TrieUtility {
         Assert.assertTrue(trie.find("Programming"));
         Assert.assertTrue(trie.findPrefix("Programm"));
         Assert.assertFalse(trie.find("Programm"));
+        Assert.assertTrue(trie.findByPattern("Programmin."));
+        Assert.assertTrue(trie.findByPattern("Pro.ram.in."));
     }
-
-
 
 
 }
