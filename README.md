@@ -16,3 +16,16 @@ You will have access to most common data structure and algorithmic questions and
 * Morris inorder traversal
 ### String
 * KMP algo for pattern searching
+
+
+## Important topics
+* DP, 
+* trees(DFS/BFS), 
+* strings, 
+* graphs(MST, shortest path), git 
+* stacks/queues/heaps, 
+* binary search, 
+* sliding window, 
+* 2 pointers, 
+* basic maths(combinatorics, tricks), 
+* tries and recursion
