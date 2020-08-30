@@ -5,3 +5,4 @@ CompetitiveProgramming.iml
 target/
 RemoteSystemsTempFiles/
 _config.yml
+*.ser
