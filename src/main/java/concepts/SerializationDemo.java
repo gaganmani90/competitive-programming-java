@@ -80,6 +80,7 @@ public class SerializationDemo {
  *
  */
 class Employee implements Serializable {
+    private static final long serialversionUID = 12345L;
     private int id;
     private String name;
 
