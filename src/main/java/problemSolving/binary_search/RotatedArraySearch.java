@@ -5,6 +5,24 @@ import org.junit.Assert;
 public class RotatedArraySearch {
     int rotatedIndex = 0;
 
+    public boolean searchBoolean(int[] nums, int target) {
+        int low = 0;
+        int high = nums.length - 1;
+        return helper(nums, low, high, target);
+    }
+
+    private boolean helper(int[] nums, int low, int high, int target){
+        if(low <= high){
+            int mid = low + (high - low)/2;
+            if(nums[mid] == target){
+                return true;
+            }else{
+                return helper(nums,low,mid-1,target) || helper(nums,mid+1,high,target);
+            }
+        }
+        return false;
+    }
+
     public int search(int[] nums, int target) {
         //boundary condition
         if (nums.length == 0) {
@@ -82,6 +100,14 @@ public class RotatedArraySearch {
 
     public static void main(String[] args) {
         RotatedArraySearch rotatedArraySearch = new RotatedArraySearch();
+        Assert.assertEquals(true, rotatedArraySearch.searchBoolean(new int[]{2,5,6,0,0,1,2}, 0));
+        Assert.assertEquals(false, rotatedArraySearch.searchBoolean(new int[]{2,5,6,0,0,1,2}, 3));
+
+        rotatedArraySearch = new RotatedArraySearch();
+        Assert.assertEquals(3, rotatedArraySearch.rotationIndex(new int[]{2, 5, 6, 0, 0, 1, 2}));
+        Assert.assertEquals(3, rotatedArraySearch.search(new int[]{2, 5, 6, 0, 0, 1, 2}, 0));
+
+        rotatedArraySearch = new RotatedArraySearch();
         Assert.assertEquals(4, rotatedArraySearch.rotationIndex(new int[]{4, 5, 6, 7, 0, 1, 2}));
         Assert.assertEquals(3, rotatedArraySearch.search(new int[]{4, 5, 6, 7, 0, 1, 2}, 7));
 
