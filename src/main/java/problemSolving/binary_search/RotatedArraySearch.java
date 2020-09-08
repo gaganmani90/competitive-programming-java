@@ -64,37 +64,34 @@ public class RotatedArraySearch {
 
     /**
      * returns rotated array index
-     *
+     * handles duplicate elements as well
      * @param nums
      * @return
      */
     private int rotationIndex(int[] nums) {
-        int loIndex = 0;
+        int lo = 0;
         int n = nums.length;
-        int hiIndex = n - 1;
+        int hi = n - 1;
 
         if (nums.length == 1) {
             return 0;
         }
-
         if (nums[0] < nums[n - 1]) {
             return 0;
         }
-
-        while (loIndex < hiIndex) {
-            int mid = (loIndex + hiIndex) / 2;
-            int midValue = nums[mid];
-            if (mid < n - 1 && nums[mid + 1] < midValue) {
-                return mid + 1;
-            } else if (mid > 0 && nums[mid - 1] > midValue) {
-                return mid;
-            } else if (nums[loIndex] < midValue) {
-                loIndex = mid + 1;
-            } else if (nums[hiIndex] > midValue) {
-                hiIndex = mid - 1;
+        //handle duplicates
+        while(hi > 0 && nums[lo] == nums[hi]) {
+            hi--;
+        }
+        while (lo < hi) {
+            int mid = (lo + hi) / 2;
+            if (nums[mid] > nums[hi]) {
+                lo = mid + 1;
+            } else {
+                hi = mid;
             }
         }
-        return -1;
+        return lo;
     }
 
 
