@@ -1,4 +1,4 @@
-package dataStructure.string;
+package algorithms;
 
 import org.junit.Assert;
 

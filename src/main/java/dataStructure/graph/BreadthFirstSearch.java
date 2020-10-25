@@ -1,6 +1,8 @@
 package dataStructure.graph;
 
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -13,7 +15,9 @@ import java.util.List;
  * If we don’t mark visited vertices, then 2 will be processed again and it will become a non-terminating process.
  * A Breadth First Traversal of the following graph is 2, 0, 3, 1.
  */
+@Slf4j
 public class BreadthFirstSearch {
+
 
     static Graph createGraph() {
         Graph g = new Graph(4, Graph.GraphType.DIRECTED);
@@ -34,33 +38,28 @@ public class BreadthFirstSearch {
      * @param source
      * @return
      */
-    static String bfs(int source, Graph graph) {
+    static String bfs(Node source, GraphContainer graph) {
         StringBuilder builder = new StringBuilder();
-
-        /**
-         * Mark all nodes as non visited at the beginning
-         */
-        boolean visited[] = new boolean[graph.numberOfVertices];
 
         /**
          * BFS queue
          */
-        LinkedList<Integer> bfsQueue = new LinkedList<>();
+        LinkedList<Node> bfsQueue = new LinkedList<>();
 
         bfsQueue.add(source); //add first element
-        visited[source] = true; //visited
+        graph.markVisited(source); //visited
 
         while (bfsQueue.size() != 0) {
-            int node = bfsQueue.poll();
+            Node node = bfsQueue.poll();
             builder.append(node);
 
             //get adjacent nodes
-            List<Integer> adjacent = graph.getAdjacentNodes(node);
+            List<Node> adjacent = node.getAdjacent();
 
-            for(int currNode : adjacent){
+            for(Node currNode : adjacent){
 
-                if(!visited[currNode]){
-                    visited[currNode] = true;
+                if(!graph.isVisited(currNode)){
+                    graph.markVisited(currNode);
                     bfsQueue.add(currNode);
                 }
             }
@@ -69,4 +68,5 @@ public class BreadthFirstSearch {
         return builder.toString();
 
     }
+
 }
