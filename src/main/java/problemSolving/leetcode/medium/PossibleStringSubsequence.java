@@ -1,6 +1,7 @@
 package problemSolving.leetcode.medium;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,9 @@ public class PossibleStringSubsequence {
 
     private static void findsubsequences(String s, String ans, List<String> subsequences) {
         if (s.length() == 0) {
-            subsequences.add(ans);
+            if(isPalindrome(ans)) {
+                subsequences.add(ans);
+            }
             return;
         }
 
@@ -34,7 +37,11 @@ public class PossibleStringSubsequence {
         return subsequences;
     }
 
+    private static boolean isPalindrome(String s) {
+        return StringUtils.reverse(s).equals(s);
+    }
+
     public static void main(String[] args) {
-        log.info(getSubsequences("abc").toString());
+        log.info(getSubsequences("abcc").toString());
     }
 }
