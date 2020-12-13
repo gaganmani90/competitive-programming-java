@@ -42,6 +42,6 @@ public class PossibleStringSubsequence {
     }
 
     public static void main(String[] args) {
-        log.info(getSubsequences("abcc").toString());
+        //log.info(getSubsequences("abcc").toString());
     }
 }
