@@ -3,9 +3,7 @@ package problemSolving.two_pointers;
 import com.google.common.collect.Lists;
 import org.junit.Assert;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 
 /**
@@ -30,6 +28,7 @@ import java.util.List;
  */
 public class ThreeSum {
 
+
     /***
      * Using two pointers approach
      * @param nums
@@ -48,7 +47,9 @@ public class ThreeSum {
         for (int i = 0; i < nums.length && nums[i] <= 0; i++) {
             //skip if value is same as previous (unique triplets remember)
             if (i == 0 || nums[i - 1] != nums[i]) {
-                findThreeSumInSubArray(i, nums, out);
+                //findThreeSumInSubArray(i, nums, out);
+                //Uncomment the hashset approach to see it working
+                findThreeSumInArray_HashSet(i, nums, out);
             }
         }
         return out;
@@ -85,6 +86,27 @@ public class ThreeSum {
             } else if (sum > 0) { //reduce value in sorted array
                 hi--;
             }
+        }
+    }
+
+    /**
+     * Hash set approach.
+     * It is working fine.
+     * @param startIndex
+     * @param nums
+     * @param out
+     */
+    private void findThreeSumInArray_HashSet(int startIndex, int[] nums, List<List<Integer>> out) {
+        Set<Integer> seen = new HashSet<>();
+        for (int lo = startIndex + 1; lo < nums.length; lo++) {
+            int complement = -nums[startIndex] - nums[lo]; //hiValue
+            if (seen.contains(complement)) { //found the triplet
+                out.add(Arrays.asList(nums[startIndex], nums[lo], complement));
+                while (lo + 1 < nums.length && nums[lo] == nums[lo + 1]) {
+                    lo++;
+                }
+            }
+            seen.add(nums[lo]);
         }
     }
 
