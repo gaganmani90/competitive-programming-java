@@ -1,4 +1,4 @@
-package annotations;
+package concepts.annotations;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Messager;
