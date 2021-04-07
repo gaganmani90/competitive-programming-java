@@ -2,7 +2,7 @@ package problemSolving;
 import java.util.Arrays;
 
 
-public class Utility {
+public class MatrixUtility {
 
 	public static void print2dArray(int[][] arr){
 		for(int i=0; i<arr.length; i++){

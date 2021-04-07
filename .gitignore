@@ -1,8 +1,7 @@
-src/test/test.iml
 .idea/
-src/main/main.iml
-CompetitiveProgramming.iml
 target/
 RemoteSystemsTempFiles/
 _config.yml
 *.ser
+.DS_Store
+*.iml
