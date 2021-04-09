@@ -1,5 +1,8 @@
 package dataStructure.linkedList;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * @author gagamani
  * @date 9/20/18
@@ -29,6 +32,21 @@ public class BasicOperations {
         return node;
     }
 
+    static Node delete(Node head, int n) {
+        Node temp = head;
+        if(temp.data == n) {
+            return temp.next;
+        }
+        while(temp.next != null) {
+            if(temp.next.data == n) {
+                temp.next = temp.next.next;
+                return head;
+            }
+            temp = temp.next;
+        }
+        return head;
+    }
+
     /**
      * Util method useful for unit tests
      * @param arr
@@ -47,6 +65,23 @@ public class BasicOperations {
                 current.next = temp;
             }
             current = temp;
+        }
+        return head;
+    }
+
+    public static Node deleteDuplicate(Node head) {
+        Set<Integer> set = new HashSet<>();
+        Node previous = null;
+        Node temp = head;
+
+        while(temp != null) {
+            if(set.contains(temp.data)) {
+                previous.next = temp.next;
+            } else {
+                previous = temp;
+                set.add(temp.data);
+            }
+            temp = temp.next;
         }
         return head;
     }
