@@ -32,6 +32,16 @@ public class BasicOperations {
         return node;
     }
 
+    static Node getMiddle(Node node) {
+        Node slowNode = node;
+        Node fastNode = node;
+        while(fastNode.next != null && fastNode.next.next != null) {
+            slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
+        }
+        return slowNode;
+    }
+
     static Node delete(Node head, int n) {
         Node temp = head;
         if(temp.data == n) {

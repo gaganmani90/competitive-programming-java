@@ -32,4 +32,12 @@ public class BasicOperationsTest {
         Assert.assertEquals("1", BasicOperations.deleteDuplicate(BasicOperations.arrayToLinkedList(new int[]{1, 1, 1, 1})).toString());
     }
 
+    @Test
+    public void middleNode() {
+        Assert.assertEquals("2 3", BasicOperations.getMiddle(BasicOperations.arrayToLinkedList(new int[]{1, 2, 3})).toString());
+        Assert.assertEquals("5 6 7", BasicOperations.getMiddle(BasicOperations.arrayToLinkedList(new int[]{3,4,5,6,7})).toString());
+        Assert.assertEquals("1", BasicOperations.getMiddle(BasicOperations.arrayToLinkedList(new int[]{1})).toString());
+        Assert.assertEquals("2 3 4", BasicOperations.getMiddle(BasicOperations.arrayToLinkedList(new int[]{1,2,3,4})).toString());
+    }
+
 }

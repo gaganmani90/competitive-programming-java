@@ -36,4 +36,17 @@ public class Node {
           return len;
      }
 
+     public boolean equals(Node node) {
+          Node temp = this;
+          while(temp != null && node != null) {
+               if(temp.data != node.data) {
+                    return false;
+               }
+               temp = temp.next;
+               node = node.next;
+          }
+          return temp == null && node == null;
+     }
+
+
 }
