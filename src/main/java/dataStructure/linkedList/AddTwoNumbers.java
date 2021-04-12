@@ -1,5 +1,7 @@
 package dataStructure.linkedList;
 
+import lombok.Getter;
+
 /**
  * You are given two non-empty linked lists representing two non-negative integers.
  * The digits are stored in reverse order and each of their nodes contain a single digit.
@@ -46,4 +48,66 @@ public class AddTwoNumbers {
         }
         return node;
     }
+
+    public static Node addFromTail(Node l1, Node l2) {
+        int len1 = l1.length();
+        int len2 = l2.length();
+
+        if(len2 < len1) {
+            l2 = padList(l2, len1-len2);
+        } else {
+            l1 = padList(l1, len2-len1);
+        }
+
+        /* Add lists */
+        PartialSum sum = addListsHelper(l1, l2);
+
+        /* If there was a carry value left over, insert this at the front of the list.
+         * Otherwise, just return the linked list. */
+        if (sum.carry== 0) {
+            return sum.sum;
+        } else {
+            Node result = insertBefore(sum.sum, sum.carry);
+            return result;
+        }
+    }
+
+    private static PartialSum addListsHelper(Node l1, Node l2) {
+        if(l1 == null && l2 == null) {
+            PartialSum partialSum = new PartialSum();
+            return partialSum;
+        }
+
+        PartialSum sum = addListsHelper(l1.next, l2.next);
+
+        int value = l1.data + l2.data + sum.carry;
+
+        //add node to sum list
+        sum.sum = insertBefore(sum.sum, value % 10);
+        sum.carry = value / 10;
+
+        return sum;
+    }
+
+    private static Node padList(Node l1, int offset) {
+        Node node = l1;
+        for(int i = 0; i < offset; i++) {
+            node = insertBefore(node, 0);
+        }
+        return node;
+    }
+
+    private static Node insertBefore(Node l1, int data) {
+        Node node = new Node(data);
+        if(l1 != null) {
+            node.next = l1;
+        }
+        return node;
+    }
+}
+
+@Getter
+class PartialSum {
+    Node sum = null;
+    int carry = 0;
 }

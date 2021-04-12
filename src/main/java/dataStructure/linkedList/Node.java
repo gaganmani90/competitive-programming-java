@@ -26,4 +26,14 @@ public class Node {
           return val.trim();
      }
 
+     public int length() {
+          int len = 0;
+          Node temp = this;
+          while(temp != null) {
+               temp = temp.next;
+               len++;
+          }
+          return len;
+     }
+
 }
