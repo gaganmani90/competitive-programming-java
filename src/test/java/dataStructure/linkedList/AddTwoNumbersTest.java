@@ -41,5 +41,10 @@ public class AddTwoNumbersTest {
                 (BasicOperations.arrayToLinkedList(new int[]{1,2,3}),
                         BasicOperations.arrayToLinkedList(new int[]{9})).
                 toString());
+
+        Assert.assertEquals("1 0 0 8", AddTwoNumbers.addFromTail
+                (BasicOperations.arrayToLinkedList(new int[]{9,9,9}),
+                        BasicOperations.arrayToLinkedList(new int[]{9})).
+                toString());
     }
 }
