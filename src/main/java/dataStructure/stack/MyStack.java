@@ -49,4 +49,15 @@ public class MyStack<T> {
         stack.pop();
         Assert.assertTrue(stack.isEmpty());
     }
+
+    @Override
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        StackNode<T> temp = this.top;
+        while(temp != null) {
+            str.append(temp.data+ " ");
+            temp = temp.next;
+        }
+        return str.toString();
+    }
 }
