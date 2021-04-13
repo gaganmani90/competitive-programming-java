@@ -24,14 +24,14 @@ public class BinaryTreeUtil {
      * @param tree
      * @return
      */
-    public static Node arrayToBinaryTree(int[] tree) {
-        return insertLevelOrder(tree, new Node(tree[0]), 0);
+    public static BinaryTreeNode arrayToBinaryTree(int[] tree) {
+        return insertLevelOrder(tree, new BinaryTreeNode(tree[0]), 0);
     }
 
-    private static Node insertLevelOrder(int[] arr, Node root, int i) {
+    private static BinaryTreeNode insertLevelOrder(int[] arr, BinaryTreeNode root, int i) {
         // Base case for recursion
         if (i < arr.length) {
-            Node temp = new Node(arr[i]);
+            BinaryTreeNode temp = new BinaryTreeNode(arr[i]);
             root = temp;
 
             // insert left child
@@ -53,7 +53,7 @@ public class BinaryTreeUtil {
      * @param traversalType
      * @return
      */
-    public static String traversal(Node node, TraversalType traversalType) {
+    public static String traversal(BinaryTreeNode node, TraversalType traversalType) {
         switch (traversalType) {
             case PREORDER:
                 return preOrderTraversal(node);
@@ -72,7 +72,7 @@ public class BinaryTreeUtil {
      * @param node
      * @return
      */
-    public static int minimumBSTValue(Node node) {
+    public static int minimumBSTValue(BinaryTreeNode node) {
         if (node == null) {
             return -1;
         } else if (node.left == null) {
@@ -87,7 +87,7 @@ public class BinaryTreeUtil {
      * @param root
      * @return
      */
-    public static boolean isValidBST(Node root) {
+    public static boolean isValidBST(BinaryTreeNode root) {
         return validBSTUtil(root, Integer.MIN_VALUE, Integer.MAX_VALUE);
     }
 
@@ -98,11 +98,11 @@ public class BinaryTreeUtil {
      * @param key
      * @return
      */
-    public static int bstSuccessor(Node node, int key) {
+    public static int bstSuccessor(BinaryTreeNode node, int key) {
         //find the key
         if (node.data == key) {
             if (node.right != null) {
-                Node tmp = node.right;
+                BinaryTreeNode tmp = node.right;
                 while (tmp.left != null) {
                     tmp = tmp.left;
                 }
@@ -123,8 +123,8 @@ public class BinaryTreeUtil {
      * @param k
      * @return
      */
-    public static int kthSmallest(Node root, int k) {
-        Stack<Node> stack = new Stack<>();
+    public static int kthSmallest(BinaryTreeNode root, int k) {
+        Stack<BinaryTreeNode> stack = new Stack<>();
         //use inorder traversal and keep track of count
         while(true) {
             while(root != null) {
@@ -141,7 +141,7 @@ public class BinaryTreeUtil {
     }
 
 
-    private static boolean validBSTUtil(Node node, int min, int max) {
+    private static boolean validBSTUtil(BinaryTreeNode node, int min, int max) {
         if (node == null) {
             return true;
         }
@@ -152,7 +152,7 @@ public class BinaryTreeUtil {
         return validBSTUtil(node.left, min, node.data - 1) && validBSTUtil(node.right, node.data + 1, max);
     }
 
-    private static String preOrderTraversal(Node node) {
+    private static String preOrderTraversal(BinaryTreeNode node) {
         if (node == null) {
             return "";
         }
@@ -160,7 +160,7 @@ public class BinaryTreeUtil {
 
     }
 
-    private static String inOrderTraversal(Node node) {
+    private static String inOrderTraversal(BinaryTreeNode node) {
         if (node == null) {
             return "";
         }
@@ -168,7 +168,7 @@ public class BinaryTreeUtil {
 
     }
 
-    private static String postOrderTraversal(Node node) {
+    private static String postOrderTraversal(BinaryTreeNode node) {
         if (node == null) {
             return "";
         }

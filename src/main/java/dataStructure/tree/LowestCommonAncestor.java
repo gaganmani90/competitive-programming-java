@@ -8,7 +8,7 @@ package dataStructure.tree;
  */
 public class LowestCommonAncestor {
 
-    static int lowestCommonAncestor(Node root, Node n1, Node n2) {
+    static int lowestCommonAncestor(BinaryTreeNode root, BinaryTreeNode n1, BinaryTreeNode n2) {
 
         if (n1 == null || n2 == null || root == null) {
             return -1;
@@ -25,7 +25,7 @@ public class LowestCommonAncestor {
      * @param n2
      * @return
      */
-    private static Node lcaUtil(Node currNode, Node n1, Node n2) {
+    private static BinaryTreeNode lcaUtil(BinaryTreeNode currNode, BinaryTreeNode n1, BinaryTreeNode n2) {
 
         if (currNode == null) {
             return null;

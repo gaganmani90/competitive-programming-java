@@ -9,7 +9,7 @@ public class PreOrderIteratorTest {
     @Test
     public void test(){
 
-        Node root = createTree();
+        BinaryTreeNode root = createTree();
         PreOrderIterator preOrderIterator = new PreOrderIterator(root);
         Assert.assertEquals("current node is root", 20, preOrderIterator.current());
         Assert.assertEquals(20, preOrderIterator.next());
@@ -28,7 +28,7 @@ public class PreOrderIteratorTest {
     @Ignore
     @Test
     public void testRemove(){
-        Node root = createTree();
+        BinaryTreeNode root = createTree();
         PreOrderIterator preOrderIterator = new PreOrderIterator(root);
 
         preOrderIterator.next(); //20
@@ -60,15 +60,15 @@ public class PreOrderIteratorTest {
      * 3    10    14
      * @return
      */
-    private Node createTree(){
-        Node node = new Node(20);
-        node.right = new Node(22);
-        node.left = new Node(8);
-        node.left.left = new Node(4);
-        node.left.left.left = new Node(3);
-        node.left.right = new Node(12);
-        node.left.right.right = new Node(14);
-        node.left.right.left = new Node(10);
+    private BinaryTreeNode createTree(){
+        BinaryTreeNode node = new BinaryTreeNode(20);
+        node.right = new BinaryTreeNode(22);
+        node.left = new BinaryTreeNode(8);
+        node.left.left = new BinaryTreeNode(4);
+        node.left.left.left = new BinaryTreeNode(3);
+        node.left.right = new BinaryTreeNode(12);
+        node.left.right.right = new BinaryTreeNode(14);
+        node.left.right.left = new BinaryTreeNode(10);
 
 
         return node;

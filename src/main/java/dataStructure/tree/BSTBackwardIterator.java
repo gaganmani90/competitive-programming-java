@@ -5,10 +5,10 @@ import org.junit.Assert;
 import java.util.Stack;
 
 public class BSTBackwardIterator {
-    Stack<Node> stackNodes;
-    Node curr;
+    Stack<BinaryTreeNode> stackNodes;
+    BinaryTreeNode curr;
 
-    public BSTBackwardIterator(Node root) {
+    public BSTBackwardIterator(BinaryTreeNode root) {
         stackNodes = new Stack<>();
         curr = root;
         //keep pushing all right nodes
@@ -44,11 +44,11 @@ public class BSTBackwardIterator {
     }
 
     public static void main(String[] args) {
-        Node root = new Node(7);
-        root.left = new Node(3);
-        root.right = new Node(15);
-        root.right.right = new Node(20);
-        root.right.left = new Node(9);
+        BinaryTreeNode root = new BinaryTreeNode(7);
+        root.left = new BinaryTreeNode(3);
+        root.right = new BinaryTreeNode(15);
+        root.right.right = new BinaryTreeNode(20);
+        root.right.left = new BinaryTreeNode(9);
 
         BSTBackwardIterator iterator = new BSTBackwardIterator(root);
 

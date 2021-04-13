@@ -4,23 +4,23 @@ package dataStructure.tree;
  * @author gagamani
  * @date 9/27/18
  */
-public class Node implements Comparable<Node>{
-    Node right;
-    Node left;
+public class BinaryTreeNode implements Comparable<BinaryTreeNode>{
+    BinaryTreeNode right;
+    BinaryTreeNode left;
     int data;
 
-    public Node(int data){
+    public BinaryTreeNode(int data){
         this.data = data;
     }
 
-    public Node(int data, Node r, Node l){
+    public BinaryTreeNode(int data, BinaryTreeNode r, BinaryTreeNode l){
         this.data = data;
         this.right = r;
         this.left = l;
     }
 
     @Override
-    public int compareTo(Node o) {
+    public int compareTo(BinaryTreeNode o) {
         if(this.data > o.data){
             return 1;
         }

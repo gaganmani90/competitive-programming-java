@@ -3,7 +3,7 @@ package dataStructure.tree;
 public class DiameterOfBinaryTree {
 
 
-    public static int diameter(Node root) {
+    public static int diameter(BinaryTreeNode root) {
         if(root == null) {
             return 0;
         }

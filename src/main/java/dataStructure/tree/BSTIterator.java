@@ -10,10 +10,10 @@ import java.util.Stack;
  * isEnd(): returns true if there no node left to traverse else false.
  */
 public class BSTIterator {
-    Stack<Node> stackNodes;
-    Node curr;
+    Stack<BinaryTreeNode> stackNodes;
+    BinaryTreeNode curr;
 
-    public BSTIterator(Node root) {
+    public BSTIterator(BinaryTreeNode root) {
         stackNodes = new Stack<>();
         curr = root;
         //keep pushing all left nodes
@@ -49,11 +49,11 @@ public class BSTIterator {
     }
 
     public static void main(String[] args) {
-        Node root = new Node(7);
-        root.left = new Node(3);
-        root.right = new Node(15);
-        root.right.right = new Node(20);
-        root.right.left = new Node(9);
+        BinaryTreeNode root = new BinaryTreeNode(7);
+        root.left = new BinaryTreeNode(3);
+        root.right = new BinaryTreeNode(15);
+        root.right.right = new BinaryTreeNode(20);
+        root.right.left = new BinaryTreeNode(9);
 
         BSTIterator iterator = new BSTIterator(root);
 

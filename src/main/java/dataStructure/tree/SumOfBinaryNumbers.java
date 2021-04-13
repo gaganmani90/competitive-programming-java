@@ -32,7 +32,7 @@ import java.util.List;
 public class SumOfBinaryNumbers {
     List<String> binaries = new ArrayList<>();
 
-    public int sumRootToLeaf(Node root) {
+    public int sumRootToLeaf(BinaryTreeNode root) {
         update(root, "");
         return getSum();
     }
@@ -45,7 +45,7 @@ public class SumOfBinaryNumbers {
         return sum;
     }
 
-    private void update(Node root, String binary) {
+    private void update(BinaryTreeNode root, String binary) {
         if (root == null) {
             return;
         }

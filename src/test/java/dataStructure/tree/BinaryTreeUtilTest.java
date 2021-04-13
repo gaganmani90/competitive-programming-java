@@ -11,7 +11,7 @@ public class BinaryTreeUtilTest {
 
     @Test
     public void test_arrayToBinaryTree() {
-        Node root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1, 2, 3, 4, 5});
+        BinaryTreeNode root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1, 2, 3, 4, 5});
         Assert.assertEquals(1, root.data);
 
         Assert.assertEquals(2, root.left.data);
@@ -24,11 +24,11 @@ public class BinaryTreeUtilTest {
 
     @Test
     public void testTraversal() {
-        Node node = new Node(10);
-        node.right = new Node(30);
-        node.left = new Node(20);
-        node.left.left = new Node(40);
-        node.left.right = new Node(50);
+        BinaryTreeNode node = new BinaryTreeNode(10);
+        node.right = new BinaryTreeNode(30);
+        node.left = new BinaryTreeNode(20);
+        node.left.left = new BinaryTreeNode(40);
+        node.left.right = new BinaryTreeNode(50);
 
         Assert.assertEquals(BinaryTreeUtil.TraversalType.PREORDER.toString(), "10 20 40 50 30", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.PREORDER).trim());
         Assert.assertEquals(BinaryTreeUtil.TraversalType.INORDER.toString(), "40 20 50 10 30", BinaryTreeUtil.traversal(node, BinaryTreeUtil.TraversalType.INORDER).trim());
@@ -37,11 +37,11 @@ public class BinaryTreeUtilTest {
 
     @Test
     public void testValidBST_false() {
-        Node node = new Node(10);
-        node.right = new Node(30);
-        node.left = new Node(20);
-        node.left.left = new Node(40);
-        node.left.right = new Node(50);
+        BinaryTreeNode node = new BinaryTreeNode(10);
+        node.right = new BinaryTreeNode(30);
+        node.left = new BinaryTreeNode(20);
+        node.left.left = new BinaryTreeNode(40);
+        node.left.right = new BinaryTreeNode(50);
 
         Assert.assertFalse(BinaryTreeUtil.isValidBST(node));
 
@@ -49,24 +49,24 @@ public class BinaryTreeUtilTest {
 
     @Test
     public void testValidBST_true() {
-        Node node = new Node(20);
-        node.right = new Node(30);
-        node.left = new Node(10);
-        node.left.left = new Node(5);
-        node.left.right = new Node(11);
-        node.right.right = new Node(31);
+        BinaryTreeNode node = new BinaryTreeNode(20);
+        node.right = new BinaryTreeNode(30);
+        node.left = new BinaryTreeNode(10);
+        node.left.left = new BinaryTreeNode(5);
+        node.left.right = new BinaryTreeNode(11);
+        node.right.right = new BinaryTreeNode(31);
 
         Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
     }
 
     @Test
     public void minBSTValue() {
-        Node node = new Node(20);
-        node.right = new Node(30);
-        node.right.right = new Node(31);
-        node.left = new Node(10);
-        node.left.left = new Node(5);
-        node.left.right = new Node(11);
+        BinaryTreeNode node = new BinaryTreeNode(20);
+        node.right = new BinaryTreeNode(30);
+        node.right.right = new BinaryTreeNode(31);
+        node.left = new BinaryTreeNode(10);
+        node.left.left = new BinaryTreeNode(5);
+        node.left.right = new BinaryTreeNode(11);
 
 
         Assert.assertTrue(BinaryTreeUtil.isValidBST(node));
@@ -77,18 +77,18 @@ public class BinaryTreeUtilTest {
 
     @Test
     public void kthSmallest() {
-        Node root = createBST();
+        BinaryTreeNode root = createBST();
         Assert.assertEquals(5, BinaryTreeUtil.kthSmallest(root, 1));
         Assert.assertEquals(11, BinaryTreeUtil.kthSmallest(root, 3));
     }
 
-    private static Node createBST() {
-        Node node = new Node(20);
-        node.right = new Node(30);
-        node.left = new Node(10);
-        node.left.left = new Node(5);
-        node.left.right = new Node(11);
-        node.right.right = new Node(31);
+    private static BinaryTreeNode createBST() {
+        BinaryTreeNode node = new BinaryTreeNode(20);
+        node.right = new BinaryTreeNode(30);
+        node.left = new BinaryTreeNode(10);
+        node.left.left = new BinaryTreeNode(5);
+        node.left.right = new BinaryTreeNode(11);
+        node.right.right = new BinaryTreeNode(31);
 
         return node;
     }

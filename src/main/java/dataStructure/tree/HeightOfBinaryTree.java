@@ -2,7 +2,7 @@ package dataStructure.tree;
 
 public class HeightOfBinaryTree {
 
-    public static int height(Node root) {
+    public static int height(BinaryTreeNode root) {
         if(root == null) {
             return 0;
         }

@@ -4,10 +4,10 @@ import java.util.Stack;
 
 public class PreOrderIterator {
 
-    Stack<Node> stack = new Stack<>();
-    Node current;
+    Stack<BinaryTreeNode> stack = new Stack<>();
+    BinaryTreeNode current;
 
-    PreOrderIterator(Node root) {
+    PreOrderIterator(BinaryTreeNode root) {
         this.current = root;
         stack.push(root);
     }
