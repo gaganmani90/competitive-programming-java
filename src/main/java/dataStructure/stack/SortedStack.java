@@ -12,13 +12,10 @@ import java.util.Stack;
 public class SortedStack {
     public static MyStack<Integer> sort(MyStack<Integer> originalStack) {
         MyStack<Integer> sortedStack = new MyStack<>();
-        if (sortedStack.isEmpty()) {
-            sortedStack.push(originalStack.pop());
-        }
         while (!originalStack.isEmpty()) {
             int temp = 0;
             //if next item is smaller then directly insert
-            if (originalStack.peek() < sortedStack.peek()) {
+            if (sortedStack.isEmpty() || originalStack.peek() < sortedStack.peek()) {
                 sortedStack.push(originalStack.pop());
             } else {
                 temp = sortedStack.pop();
@@ -33,12 +30,14 @@ public class SortedStack {
     public static void main(String[] args) {
         MyStack<Integer> stack = new MyStack<>();
         stack.push(1);
-        stack.push(2);
-        stack.push(3);
+        stack.push(21);
+        stack.push(31);
+        stack.push(12);
 
         MyStack<Integer> sortedStack = sort(stack);
         Assert.assertEquals(1, sortedStack.pop().intValue());
-        Assert.assertEquals(2, sortedStack.pop().intValue());
-        Assert.assertEquals(3, sortedStack.pop().intValue());
+        Assert.assertEquals(12, sortedStack.pop().intValue());
+        Assert.assertEquals(21, sortedStack.pop().intValue());
+        Assert.assertEquals(31, sortedStack.pop().intValue());
     }
 }
