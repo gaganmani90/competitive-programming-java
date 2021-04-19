@@ -90,11 +90,13 @@ public class Graph {
     }
 
     public Node createNode(int val) {
-        Node node = new Node(val);
-        if(nodes.containsKey(node)) {
-            log.error("DUPLICATE-NODE: ignore");
-            return null;
+        for(Node node : nodes.keySet()) {
+            if(node.getVal() == val) {
+                log.warn("DUPLICATE-NODE: ignore");
+                return node;
+            }
         }
+        Node node = new Node(val);
         Preconditions.checkArgument(nodes.size() < size, "Graph size exceeded");
         nodes.put(node, State.UNVISITED);
         log.info(String.format("CREATE NODE: node created with value %s", val));
