@@ -10,6 +10,14 @@ import org.junit.Test;
 public class BinaryTreeUtilTest {
 
     @Test
+    public void createMinimalBST() {
+        BinaryTreeNode root = BinaryTreeUtil.createMinimalBST(new int[]{1,2,3,4,5});
+        Assert.assertEquals(3, root.data);
+        Assert.assertEquals(1, root.left.data);
+        Assert.assertEquals(4, root.right.data);
+    }
+
+    @Test
     public void test_arrayToBinaryTree() {
         BinaryTreeNode root = BinaryTreeUtil.arrayToBinaryTree(new int[]{1, 2, 3, 4, 5});
         Assert.assertEquals(1, root.data);

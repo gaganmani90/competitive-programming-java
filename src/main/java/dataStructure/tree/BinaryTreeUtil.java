@@ -11,6 +11,27 @@ public class BinaryTreeUtil {
 
 
     /**
+     * Given soprted array, create minimal height BST
+     *
+     * @param arr sprted array
+     * @return
+     */
+    public static BinaryTreeNode createMinimalBST(int[] arr) {
+        return createMinimalBSTUtil(arr, 0, arr.length - 1);
+    }
+
+    private static BinaryTreeNode createMinimalBSTUtil(int[] arr, int start, int end) {
+        if (end < start) {
+            return null;
+        }
+        int mid = (start + end) / 2;
+        BinaryTreeNode node = new BinaryTreeNode(arr[mid]);
+        node.left = createMinimalBSTUtil(arr, start, mid - 1);
+        node.right = createMinimalBSTUtil(arr, mid + 1, end);
+        return node;
+    }
+
+    /**
      * TODO: complete this
      * Array to binary tree conversion in level order
      * Example: {1, 2, 3, 4, 5, 6}
@@ -69,6 +90,7 @@ public class BinaryTreeUtil {
     /**
      * 2.
      * Minimum BST value
+     *
      * @param node
      * @return
      */
@@ -84,6 +106,7 @@ public class BinaryTreeUtil {
     /**
      * 3.
      * Validates binary search tree
+     *
      * @param root
      * @return
      */
@@ -94,6 +117,7 @@ public class BinaryTreeUtil {
     /**
      * 4.
      * the minimum value in right subtree is successor
+     *
      * @param node
      * @param key
      * @return
@@ -109,9 +133,9 @@ public class BinaryTreeUtil {
                 return tmp.data;
             }
         } else if (key > node.data) {
-           return bstSuccessor(node.right, key);
+            return bstSuccessor(node.right, key);
         } else if (key < node.data) {
-           return  bstSuccessor(node.left, key);
+            return bstSuccessor(node.left, key);
         }
         return key;
     }
@@ -119,6 +143,7 @@ public class BinaryTreeUtil {
     /**
      * 5.
      * K th smallest element in BST
+     *
      * @param root
      * @param k
      * @return
@@ -126,13 +151,13 @@ public class BinaryTreeUtil {
     public static int kthSmallest(BinaryTreeNode root, int k) {
         Stack<BinaryTreeNode> stack = new Stack<>();
         //use inorder traversal and keep track of count
-        while(true) {
-            while(root != null) {
+        while (true) {
+            while (root != null) {
                 stack.add(root);
                 root = root.left;
             }
             root = stack.pop();
-            if(--k == 0) {
+            if (--k == 0) {
                 return root.data;
             }
             root = root.right;
