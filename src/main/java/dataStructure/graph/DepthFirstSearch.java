@@ -13,22 +13,21 @@ public class DepthFirstSearch {
      * @param graph
      * @return string such as "2 1 0 3"
      */
-    public static String dfcRecursive(int vertex, Graph graph) {
+    public static String dfcRecursive(Node vertex, Graph graph) {
         StringBuilder dfsTraversal = new StringBuilder();
-        boolean visited[] = new boolean[graph.numberOfVertices];
-        dfsUtil(vertex, visited, dfsTraversal, graph);
+        dfsUtil(vertex, dfsTraversal, graph);
         return dfsTraversal.toString();
     }
 
-    private static void dfsUtil(int vertex, boolean[] visited, StringBuilder traversal, Graph graph) {
+    private static void dfsUtil(Node vertex, StringBuilder traversal, Graph graph) {
         traversal.append(vertex+" ");
-        visited[vertex] = true; //mark visited
-        List<Integer> nodes = graph.getAdjacentNodes(vertex); //get adjuscent nodes
-        Iterator<Integer> i = nodes.iterator();
+        graph.markVisited(vertex);
+        List<Node> nodes = vertex.getAdjacent(); //get adjuscent nodes
+        Iterator<Node> i = nodes.iterator();
         while(i.hasNext()) {
-            int node = i.next();
-            if(!visited[node]) {
-                dfsUtil(node, visited, traversal, graph);
+            Node node = i.next();
+            if(graph.isVisited(node)) {
+                dfsUtil(node, traversal, graph);
             }
         }
     }

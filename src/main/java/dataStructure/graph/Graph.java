@@ -1,7 +1,6 @@
 package dataStructure.graph;
 
 import com.google.common.base.Preconditions;
-import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.extern.slf4j.Slf4j;
@@ -12,67 +11,15 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Assumption : If there are n number of vertices, graph nodes will start from 0 till n-1.
- */
-@Data
-@Getter
-@ToString
-@Slf4j
-@Deprecated
-public class Graph {
-
-    int numberOfVertices;
-    private LinkedList<Integer> adjacent[];
-    private GraphType type;
-
-    enum GraphType {
-        UNDIRECTED, DIRECTED
-    }
-
-
-    public Graph(int v, GraphType type) {
-        this.numberOfVertices = v;
-        this.type = type;
-        adjacent = new LinkedList[v];
-        //initialize adjacent nodes.
-        for (int i = 0; i < v; i++) {
-            adjacent[i] = new LinkedList<>();
-        }
-
-    }
-
-    /**
-     * Linking source and destination nodes with edge
-     *
-     * @param source
-     * @param destination
-     */
-    public void addEdge(int source, int destination) {
-        this.adjacent[source].add(destination);
-        if (this.type.equals(GraphType.UNDIRECTED)) {
-            this.adjacent[destination].add(source);//for undirected graph
-        }
-    }
-
-    public List<Integer> getAdjacentNodes(int v) {
-        return this.adjacent[v];
-    }
-
-    public void print() {
-        System.out.println(this.toString());
-    }
-}
-
-/**
  * Node in a graph
  */
 @Getter
 @Slf4j
 class Node {
-    private String val;
+    private int val;
     private List<Node> adjacent;
 
-    Node(String val) {
+    Node(int val) {
         this.val = val;
         adjacent = new LinkedList<>();
     }
@@ -87,7 +34,7 @@ class Node {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Node node = (Node) o;
-        return val.equals(node.val);
+        return val == (node.val);
     }
 
     @Override
@@ -111,7 +58,7 @@ class Node {
  */
 @ToString
 @Slf4j
-class GraphContainer {
+public class Graph {
     enum GraphType {
         UNDIRECTED, DIRECTED
     }
@@ -123,18 +70,18 @@ class GraphContainer {
      * [Optional]Initialize with fixed size
      * @param size
      */
-    public GraphContainer(int size, GraphType type) {
+    public Graph(int size, GraphType type) {
         this.size = size;
         this.type = type;
         nodes = new HashMap<>();
     }
 
-    public GraphContainer(GraphType type) {
+    public Graph(GraphType type) {
         this.type = type;
         nodes = new HashMap<>();
     }
 
-    public Node createNode(String val) {
+    public Node createNode(int val) {
         Node node = new Node(val);
         if(nodes.containsKey(node)) {
             log.error("DUPLICATE-NODE: ignore");
@@ -151,7 +98,7 @@ class GraphContainer {
         checkIfPresentElseAdd(n1);
         checkIfPresentElseAdd(n2);
         n1.addEdge(n2);
-        if (type.equals(Graph.GraphType.UNDIRECTED)) {
+        if (type.equals(GraphType.UNDIRECTED)) {
             n2.addEdge(n1);
         }
     }

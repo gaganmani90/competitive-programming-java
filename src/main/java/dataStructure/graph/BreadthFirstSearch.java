@@ -21,12 +21,16 @@ public class BreadthFirstSearch {
 
     static Graph createGraph() {
         Graph g = new Graph(4, Graph.GraphType.DIRECTED);
-        g.addEdge(0, 1);
-        g.addEdge(0, 2);
-        g.addEdge(1, 2);
-        g.addEdge(2, 0);
-        g.addEdge(2, 3);
-        g.addEdge(3, 3);
+        Node n1 = g.createNode(0);
+        Node n2 = g.createNode(1);
+        Node n3 = g.createNode(2);
+        Node n4 = g.createNode(3);
+        g.addEdge(n1, n2);
+        g.addEdge(n1, n3);
+        g.addEdge(n2, n3);
+        g.addEdge(n3, n1);
+        g.addEdge(n3, n4);
+        g.addEdge(n4, n4);
 
         return g;
 
@@ -38,7 +42,7 @@ public class BreadthFirstSearch {
      * @param source
      * @return
      */
-    static String bfs(Node source, GraphContainer graph) {
+    static String bfs(Node source, Graph graph) {
         StringBuilder builder = new StringBuilder();
 
         /**

@@ -8,13 +8,13 @@ public class BreadthFirstSearchTest {
 
     @Test
     public void testGraphContainer() {
-        GraphContainer graphContainer = new GraphContainer(GraphContainer.GraphType.DIRECTED);
-        Node zero = graphContainer.createNode("shivani");
-        Node one = graphContainer.createNode("gagan");
-        Node two = graphContainer.createNode("job");
-        Node three = graphContainer.createNode("will");
-        Node four = graphContainer.createNode("get");
-        Node five = graphContainer.createNode("amazon");
+        Graph graphContainer = new Graph(Graph.GraphType.DIRECTED);
+        Node zero = graphContainer.createNode("shivani".hashCode());
+        Node one = graphContainer.createNode("gagan".hashCode());
+        Node two = graphContainer.createNode("job".hashCode());
+        Node three = graphContainer.createNode("will".hashCode());
+        Node four = graphContainer.createNode("get".hashCode());
+        Node five = graphContainer.createNode("amazon".hashCode());
 
         /**
          * [main] INFO dataStructure.graph.Node - ADD EDGE: [shivani -> gagan]
@@ -41,8 +41,8 @@ public class BreadthFirstSearchTest {
         Assertions.assertThrows(NullPointerException.class, () -> graphContainer.addEdge(one,null),
                 "invalid node");
         Assert.assertEquals(graphContainer.size(), 6);
-        Assert.assertEquals("shivani, gagan, job, amazon, will, get, ",
-                BreadthFirstSearch.bfs(zero, graphContainer));
+        Assert.assertEquals("2061721690, 98114490, 105405, -1414265340, 3649490, 102230,",
+                BreadthFirstSearch.bfs(zero, graphContainer).trim());
 
     }
 }
