@@ -62,8 +62,12 @@ public class Graph {
     enum GraphType {
         UNDIRECTED, DIRECTED
     }
-    private GraphType type = GraphType.DIRECTED;
-    private HashMap<Node, Boolean> nodes;
+
+    enum State {
+        VISITED, UNVISITED
+    }
+    private GraphType type;
+    private HashMap<Node, State> nodes;
     private int size = Integer.MAX_VALUE;
 
     /**
@@ -81,6 +85,10 @@ public class Graph {
         nodes = new HashMap<>();
     }
 
+    public Graph() {
+        this.type = GraphType.DIRECTED;
+    }
+
     public Node createNode(int val) {
         Node node = new Node(val);
         if(nodes.containsKey(node)) {
@@ -88,7 +96,7 @@ public class Graph {
             return null;
         }
         Preconditions.checkArgument(nodes.size() < size, "Graph size exceeded");
-        nodes.put(node, false);
+        nodes.put(node, State.UNVISITED);
         log.info(String.format("CREATE NODE: node created with value %s", val));
         return node;
     }
@@ -108,7 +116,7 @@ public class Graph {
         if(!nodes.containsKey(n1)) {
             if (nodes.size() < size) {
                 log.info("Adding node :" + n1.getVal());
-                nodes.put(n1, false);
+                nodes.put(n1, State.UNVISITED);
                 return;
             } else {
                 log.error("Node size exceeded, cannot add more nodes");
@@ -128,17 +136,17 @@ public class Graph {
      * Mark all nodes unvisited
      */
     public void reset() {
-        this.nodes.keySet().forEach(node -> nodes.put(node, false));
+        this.nodes.keySet().forEach(node -> nodes.put(node, State.UNVISITED));
     }
 
     public void markVisited(Node n) {
         Preconditions.checkNotNull(n);
-        nodes.put(n, true);
+        nodes.put(n, State.VISITED);
     }
 
     public boolean isVisited(Node n) {
         Preconditions.checkNotNull(n);
-        return nodes.get(n);
+        return nodes.get(n).equals(State.VISITED);
     }
 
 }
