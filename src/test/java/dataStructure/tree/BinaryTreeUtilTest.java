@@ -15,6 +15,11 @@ public class BinaryTreeUtilTest {
         Assert.assertEquals(3, root.data);
         Assert.assertEquals(1, root.left.data);
         Assert.assertEquals(4, root.right.data);
+
+        Assert.assertEquals(2, root.left.right.data);
+        Assert.assertEquals(5, root.right.right.data);
+
+        Assert.assertEquals(3, HeightOfBinaryTree.height(root));
     }
 
     @Test
