@@ -1,13 +1,16 @@
 package dataStructure.tree;
 
+import lombok.Getter;
+
 /**
  * @author gagamani
  * @date 9/27/18
  */
+@Getter
 public class BinaryTreeNode implements Comparable<BinaryTreeNode>{
-    BinaryTreeNode right;
-    BinaryTreeNode left;
-    int data;
+    public BinaryTreeNode right;
+    public BinaryTreeNode left;
+    public int data;
 
     public BinaryTreeNode(int data){
         this.data = data;

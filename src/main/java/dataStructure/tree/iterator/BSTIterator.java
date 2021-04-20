@@ -1,5 +1,6 @@
-package dataStructure.tree;
+package dataStructure.tree.iterator;
 
+import dataStructure.tree.BinaryTreeNode;
 import org.junit.Assert;
 
 import java.util.Stack;

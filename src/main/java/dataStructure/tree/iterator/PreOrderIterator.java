@@ -1,4 +1,6 @@
-package dataStructure.tree;
+package dataStructure.tree.iterator;
+
+import dataStructure.tree.BinaryTreeNode;
 
 import java.util.Stack;
 
