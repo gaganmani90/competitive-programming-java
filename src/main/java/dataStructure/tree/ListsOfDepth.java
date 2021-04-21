@@ -29,11 +29,36 @@ public class ListsOfDepth {
             levelList = new ArrayList<>();
             lists.add(levelList);
         } else {
-            levelList = lists.get(level); //fetch exsiting levelList
+            levelList = lists.get(level); //fetch existing levelList
         }
         levelList.add(root);
         createLevelLinkedListUtil(root.right, lists, level + 1);
         createLevelLinkedListUtil(root.left, lists, level + 1);
+    }
+
+    public static ArrayList<ArrayList<BinaryTreeNode>> createLevelLinkedList_bfs(BinaryTreeNode root) {
+        ArrayList<ArrayList<BinaryTreeNode>> lists = new ArrayList<>();
+        ArrayList<BinaryTreeNode> currentLevel = new ArrayList<>();
+        if (root != null) {
+            currentLevel.add(root);
+        }
+
+        while (currentLevel.size() > 0) {
+            lists.add(currentLevel); //add entire level nodes
+            ArrayList<BinaryTreeNode> parents = currentLevel;
+            currentLevel = new ArrayList<>();
+
+            //traverse the level
+            for (BinaryTreeNode parent : parents) {
+                if (parent.left != null) {
+                    currentLevel.add(parent.left);
+                }
+                if (parent.right != null) {
+                    currentLevel.add(parent.right);
+                }
+            }
+        }
+        return lists;
     }
 
     public static void main(String[] args) {
@@ -44,5 +69,8 @@ public class ListsOfDepth {
         node.left.right = new BinaryTreeNode(50);
 
         Assert.assertEquals(3, createLevelLinkedList_dfs(node).size());
+        Assert.assertEquals(3, createLevelLinkedList_bfs(node).size());
+        Assert.assertEquals("level 0",10, createLevelLinkedList_bfs(node).get(0).get(0).data);
+        Assert.assertEquals("level 1: left node",20, createLevelLinkedList_bfs(node).get(1).get(0).data);
     }
 }
