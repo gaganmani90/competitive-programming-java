@@ -1,5 +1,6 @@
-package dataStructure.tree;
+package dataStructure.tree.iterator;
 
+import dataStructure.tree.BinaryTreeNode;
 import dataStructure.tree.iterator.PreOrderIterator;
 import org.junit.Assert;
 import org.junit.Ignore;

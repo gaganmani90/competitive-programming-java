@@ -9,12 +9,12 @@ public class PreOrderIterator {
     Stack<BinaryTreeNode> stack = new Stack<>();
     BinaryTreeNode current;
 
-    PreOrderIterator(BinaryTreeNode root) {
+    public PreOrderIterator(BinaryTreeNode root) {
         this.current = root;
         stack.push(root);
     }
 
-    boolean hasNext() {
+    public boolean hasNext() {
         return !stack.empty();
     }
 
@@ -22,7 +22,7 @@ public class PreOrderIterator {
      * returns current node's value and moves pointer to next node
      * @return
      */
-    int next() {
+    public int next() {
         if (!this.hasNext()) {
             return -1;
         }
@@ -43,7 +43,7 @@ public class PreOrderIterator {
      * current's node value
      * @return
      */
-    int current(){
+    public int current(){
         return current.data;
     }
 
