@@ -70,7 +70,7 @@ public class ListsOfDepth {
 
         Assert.assertEquals(3, createLevelLinkedList_dfs(node).size());
         Assert.assertEquals(3, createLevelLinkedList_bfs(node).size());
-        Assert.assertEquals("level 0",10, createLevelLinkedList_bfs(node).get(0).get(0).data);
-        Assert.assertEquals("level 1: left node",20, createLevelLinkedList_bfs(node).get(1).get(0).data);
+        Assert.assertEquals("level 0", 10, createLevelLinkedList_bfs(node).get(0).get(0).data);
+        Assert.assertEquals("level 1: left node", 20, createLevelLinkedList_bfs(node).get(1).get(0).data);
     }
 }
