@@ -10,11 +10,11 @@ import java.util.Stack;
  * next(): iterates to the next smallest element in the Binary Search Tree.
  * isEnd(): returns true if there no node left to traverse else false.
  */
-public class BSTIterator {
+public class BSTInorderIterator {
     Stack<BinaryTreeNode> stackNodes;
     BinaryTreeNode curr;
 
-    public BSTIterator(BinaryTreeNode root) {
+    public BSTInorderIterator(BinaryTreeNode root) {
         stackNodes = new Stack<>();
         curr = root;
         //keep pushing all left nodes
@@ -56,7 +56,7 @@ public class BSTIterator {
         root.right.right = new BinaryTreeNode(20);
         root.right.left = new BinaryTreeNode(9);
 
-        BSTIterator iterator = new BSTIterator(root);
+        BSTInorderIterator iterator = new BSTInorderIterator(root);
 
         Assert.assertEquals(3, iterator.next());
         Assert.assertEquals(7, iterator.next());
