@@ -4,6 +4,9 @@ import dataStructure.tree.BinaryTreeNode;
 
 import java.util.Stack;
 
+/**
+ * root -> left -> right
+ */
 public class PreOrderIterator {
 
     Stack<BinaryTreeNode> stack = new Stack<>();

@@ -9,6 +9,8 @@ import java.util.Stack;
  * curr(): returns the pointer to current element.
  * next(): iterates to the next smallest element in the Binary Search Tree.
  * isEnd(): returns true if there no node left to traverse else false.
+ *
+ * left -> root -> right
  */
 public class BSTInorderIterator {
     Stack<BinaryTreeNode> stackNodes;
