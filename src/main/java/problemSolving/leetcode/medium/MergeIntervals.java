@@ -1,8 +1,11 @@
 package problemSolving.leetcode.medium;
 
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.junit.Assert;
 
 import java.util.Arrays;
+import java.util.PriorityQueue;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -29,6 +32,7 @@ import java.util.TreeSet;
  * <p>
  * intervals[i][0] <= intervals[i][1]
  */
+@Slf4j
 public class MergeIntervals {
     public static int[][] merge(int[][] intervals) {
         //contains sorted intervals by starting value.
@@ -62,6 +66,42 @@ public class MergeIntervals {
         return out;
     }
 
+    public static int[][] merger_optimized(int [][] intervals){
+        if(intervals == null || intervals.length == 0) {
+            return intervals;
+        }
+
+        //sort by start time
+        Arrays.sort(intervals, (a,b) -> a[0] - b[0]);
+        //merged intervals
+        PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a,b) -> b[1]-a[1]);
+
+        maxHeap.add(intervals[0]); //end time
+
+        for(int i = 1; i < intervals.length; i++) {
+            int[] prevInterval = maxHeap.peek();
+            int currStartTime = intervals[i][0];
+            int currEndTime = intervals[i][1];
+            if(currStartTime <= prevInterval[1]) {
+                prevInterval[1] = Math.max(prevInterval[1], currEndTime);
+            } else {
+                maxHeap.add(intervals[i]);
+            }
+        }
+         maxHeap.forEach( t -> log.info(Arrays.toString(t)));
+
+        return heapToArray(maxHeap);
+    }
+
+    private static int[][] heapToArray(PriorityQueue<int[]> heap) {
+        int[][] result = new int[heap.size()][];
+        int i = 0;
+        for(int[] interval : heap) {
+            result[i++] = interval;
+        }
+        return result;
+    }
+
 
     public static void main(String[] args) {
         Assert.assertTrue(isDeepEquals(new int[][]{{1, 5}}, merge(new int[][]{
@@ -75,6 +115,14 @@ public class MergeIntervals {
         })));
         Assert.assertTrue(isDeepEquals(new int[][]{{1, 4}}, merge(new int[][]{
                 {1, 4}
+        })));
+
+        merger_optimized(new int[][]{
+                {1, 3}, {8, 10}, {2, 6}, {10, 18}
+        });
+
+        Assert.assertTrue("optimized",isDeepEquals(new int[][]{{8, 18},{1,6}}, merger_optimized(new int[][]{
+                {1, 3}, {8, 10}, {2, 6}, {10, 18}
         })));
 
     }
