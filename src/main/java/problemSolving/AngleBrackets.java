@@ -29,6 +29,7 @@ public class AngleBrackets {
         char open = '<';
         char close = '>';
         int openCount = 0, closeCount = 0;
+
         if(brackets.isEmpty()) {
             return "";
         }
