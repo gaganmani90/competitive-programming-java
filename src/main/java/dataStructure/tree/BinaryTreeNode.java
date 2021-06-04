@@ -37,6 +37,28 @@ public class BinaryTreeNode implements Comparable<BinaryTreeNode>{
 
     @Override
     public String toString() {
-        return data+" ";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n");
+        traversePreOrder(sb,"","", this);
+        return sb.toString();
+    }
+
+    private void traversePreOrder(StringBuilder sb, String padding, String pointer, BinaryTreeNode node) {
+        if (node != null) {
+            sb.append(padding);
+            sb.append(pointer);
+            sb.append(node.getData());
+            sb.append("\n");
+
+            StringBuilder paddingBuilder = new StringBuilder(padding);
+            paddingBuilder.append("│  ");
+
+            String paddingForBoth = paddingBuilder.toString();
+            String pointerForRight = "└──";
+            String pointerForLeft = (node.getRight() != null) ? "├──" : "└──";
+
+            traversePreOrder(sb, paddingForBoth, pointerForLeft, node.getLeft());
+            traversePreOrder(sb, paddingForBoth, pointerForRight, node.getRight());
+        }
     }
 }

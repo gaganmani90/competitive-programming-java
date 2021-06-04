@@ -1,10 +1,13 @@
 package dataStructure.tree.iterator;
 
 import dataStructure.tree.BinaryTreeNode;
+import dataStructure.tree.BinaryTreeUtil;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 
 import java.util.Stack;
 
+@Slf4j
 public class BSTBackwardIterator {
     Stack<BinaryTreeNode> stackNodes;
     BinaryTreeNode curr;
@@ -52,6 +55,8 @@ public class BSTBackwardIterator {
         root.right.left = new BinaryTreeNode(9);
 
         BSTBackwardIterator iterator = new BSTBackwardIterator(root);
+
+        log.info(root.toString());
 
         Assert.assertEquals(20, iterator.prev());
         Assert.assertEquals(15, iterator.prev());

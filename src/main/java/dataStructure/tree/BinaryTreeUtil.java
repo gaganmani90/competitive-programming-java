@@ -177,7 +177,7 @@ public class BinaryTreeUtil {
         return validBSTUtil(node.left, min, node.data - 1) && validBSTUtil(node.right, node.data + 1, max);
     }
 
-    private static String preOrderTraversal(BinaryTreeNode node) {
+    public static String preOrderTraversal(BinaryTreeNode node) {
         if (node == null) {
             return "";
         }
@@ -185,7 +185,7 @@ public class BinaryTreeUtil {
 
     }
 
-    private static String inOrderTraversal(BinaryTreeNode node) {
+    public static String inOrderTraversal(BinaryTreeNode node) {
         if (node == null) {
             return "";
         }
@@ -193,7 +193,7 @@ public class BinaryTreeUtil {
 
     }
 
-    private static String postOrderTraversal(BinaryTreeNode node) {
+    public static String postOrderTraversal(BinaryTreeNode node) {
         if (node == null) {
             return "";
         }
