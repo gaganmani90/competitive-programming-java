@@ -1,33 +1,29 @@
 package problemSolving;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 
 public class LongestNonRepeatingSubstring {
     public static int longestSubstring(String s) {
-        if(s == null || s.length() == 0 || s.isEmpty()) {
-            return 0;
-        }
-        int maxLength = 0;
-        HashSet<Character> set = new HashSet<>();
-        int prevDuplicateIndex = 0;
-        for(int i = 0; i < s.length(); i++) {
-            char c = s.charAt(i);
-            if(set.contains(c)) {
-                //remove all previous hashmap elements that occurred before this duplicate
-                //example: abcgzg => this will remove all entries before g if it is traversing second g
-                while(prevDuplicateIndex < i) {
-                    if(s.charAt(prevDuplicateIndex) == c) {
-                        prevDuplicateIndex++;
-                        break;
-                    }
-                    set.remove(s.charAt(prevDuplicateIndex));
-                    prevDuplicateIndex++;
-                }
-            } else {
-                set.add(c);
-                maxLength = Math.max(maxLength,set.size());
+        //will store contigous unique characters only
+        Map<Character, Integer> map = new HashMap();
+        int count = 0;
+
+        //i will only move when a duplicate is found
+        //max window of [i to j] is the answer
+        for(int i = 0, j = 0; j < s.length(); j++) {
+            char c = s.charAt(j);
+
+            if(map.containsKey(c)) {
+                //Max condition is important so that sliding window always
+                //starts from max i and not from prev duplicate index if it was less than i.
+                i = Math.max(map.get(c)+1, i);
             }
+            count = Math.max(count, j-i+1);
+            map.put(c, j);
         }
-        return maxLength;
+
+        return count;
     }
 }
