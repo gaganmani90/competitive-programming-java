@@ -42,16 +42,8 @@ public class TrieUtility {
      * @return
      */
     public boolean find(String word) {
-        TrieNode current = root;
-        for (int i = 0; i < word.length(); i++) {
-            char ch = word.charAt(i);
-            TrieNode node = current.getChildren().get(ch);
-            if (node == null) {
-                return false;
-            }
-            current = node; //keep moving current node into word's direction
-        }
-        return current.isEndOfWord() && current.getContent().equals(word);
+        TrieNode current = prefix(word);
+        return current !=null && current.isEndOfWord();
     }
 
     /**
@@ -61,16 +53,21 @@ public class TrieUtility {
      * @return
      */
     public boolean findPrefix(String prefix) {
+        TrieNode current = prefix(prefix);
+        return current != null;
+    }
+
+    private TrieNode prefix(String prefix) {
         TrieNode current = root;
         for (int i = 0; i < prefix.length(); i++) {
             char ch = prefix.charAt(i);
             TrieNode node = current.getChildren().get(ch);
             if (node == null) {
-                return false;
+                return null;
             }
             current = node; //keep moving current node into word's direction
         }
-        return true;
+        return current;
     }
 
     /**
