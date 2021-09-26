@@ -40,12 +40,15 @@ public class Permutations {
     private void backtrack(List<List<Integer>> out, int[] nums, List<Integer> tempList) {
         if(tempList.size() == nums.length) {
             out.add(new ArrayList<>(tempList));
+            log.info("result found: "+tempList);
         } else {
             for (int i = 0; i < nums.length; i++) {
                 if (tempList.contains(nums[i])) continue; //skip if already exist
                 tempList.add(nums[i]);
+                log.debug(String.format("Top-down: (%s, index: %s)", tempList, i));
                 backtrack(out, nums, tempList);
                 tempList.remove(tempList.size() - 1);
+                log.debug(String.format("Backtrack: (%s, index: %s)", tempList, i));
             }
         }
     }
