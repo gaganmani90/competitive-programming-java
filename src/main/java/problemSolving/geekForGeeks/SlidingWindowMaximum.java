@@ -1,8 +1,8 @@
 package problemSolving.geekForGeeks;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
+
+import java.util.*;
 
 /**
  * TODO: Optimize
@@ -27,26 +27,41 @@ import java.util.List;
  * @author gagamani
  * @date 9/23/18
  */
+@Slf4j
 public class SlidingWindowMaximum {
 
     static String slidingMaxArray(int[] arr, int windowSize) {
 
-        if (windowSize >= arr.length) {
+        if (arr == null || windowSize <= 0) {
+            return "";
+        }
+        int len = arr.length;
+        if (windowSize >= len) {
             return Arrays.toString(arr);
         }
+        log.info("input: "+Arrays.toString(arr));
         List<Integer> max = new ArrayList<>();
-
-        int index = 0;
-
-        while (index != (arr.length - windowSize + 1)) {
-            int[] window = new int[windowSize];
-            for (int i = 0, j = index; i < windowSize; i++) {
-                window[i] = arr[i + j];
+        //store index
+        Deque<Integer> q= new ArrayDeque<>();
+        for(int i = 0; i < len; i++) {
+            //remove numbers out of range k
+            if(!q.isEmpty() && q.peek() < i - windowSize + 1) {
+                log.info("poll: "+q.peek());
+                q.poll();
             }
-            max.add(max(window));
-            index++;
+            //remove smaller numbers in window range as they are useless
+            while(!q.isEmpty() && arr[q.peekLast()] < arr[i]) {
+                log.info("pollLast: "+q.peekLast());
+                q.pollLast();
+            }
+            //q contains index...
+            q.offer(i);
+            if(i >= windowSize-1) {
+                max.add(arr[q.peek()]);
+            }
         }
 
+        log.info("result: "+max);
         return max.toString();
 
     }
