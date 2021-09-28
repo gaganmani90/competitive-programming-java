@@ -29,3 +29,5 @@ You will have access to most common data structure and algorithmic questions and
 * 2 pointers, 
 * basic maths(combinatorics, tricks), 
 * tries and recursion
+
+## References
