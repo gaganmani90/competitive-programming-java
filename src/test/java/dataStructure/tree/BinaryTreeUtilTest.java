@@ -1,6 +1,7 @@
 package dataStructure.tree;
 
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -36,6 +37,7 @@ public class BinaryTreeUtilTest {
     }
 
     @Test
+    @Ignore
     public void testTraversal() {
         BinaryTreeNode node = new BinaryTreeNode(10);
         node.right = new BinaryTreeNode(30);
