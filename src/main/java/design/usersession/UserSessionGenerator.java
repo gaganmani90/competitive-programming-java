@@ -21,12 +21,20 @@ public class UserSessionGenerator {
         this.postUrl = postUrl;
     }
     private List<PageEvent> processRawWebViews() {
+        //Fetch web views payload from URL
         String webViewPayload = new AnalyticsAPIOperations().get(getUrl);
+
+        //transform and return
         return new JsonToPageEventTransformer().transform(webViewPayload);
     }
 
     public void postUserSessions() {
-        Map<String, List<Session>> map = new PageEventToSessionTransformer().transform(processRawWebViews());
-        new AnalyticsAPIOperations().post(postUrl, new SessionToJsonTransformer().transform(map));
+        List<PageEvent> pageEvents = processRawWebViews();
+        //apply transformation logic
+        Map<String, List<Session>> map = new PageEventToSessionTransformer().transform(pageEvents);
+        //convert to json
+        String sessionPayload = new SessionToJsonTransformer().transform(map);
+        //Make a POST request
+        new AnalyticsAPIOperations().post(postUrl, sessionPayload);
     }
 }
