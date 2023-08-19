@@ -1,7 +1,5 @@
 package design.usersession;
 
-import net.sf.saxon.trans.SymbolicName;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
