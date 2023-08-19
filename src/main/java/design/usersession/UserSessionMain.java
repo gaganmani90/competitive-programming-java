@@ -1,5 +1,10 @@
 package design.usersession;
 
+import design.usersession.http.AnalyticsAPIOperations;
+import design.usersession.model.Session;
+import design.usersession.transformers.PageEventToSessionTransformer;
+import design.usersession.transformers.JsonToPageEventTransformer;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -38,8 +43,7 @@ public class UserSessionMain {
             "}\n" +
             "]";
     public static void main(String[] args) throws IOException {
-        SessionManager sessionManager = new SessionManager();
-        Map<String, List<Session>> response = new EventTransformer().transform(sessionManager.readEvent(json));
+        Map<String, List<Session>> response = new PageEventToSessionTransformer().transform(new JsonToPageEventTransformer().transform(json));
         System.out.println(response);
 
         AnalyticsAPIOperations fetchAndPostClient = new AnalyticsAPIOperations();
@@ -48,5 +52,9 @@ public class UserSessionMain {
 
         payload = fetchAndPostClient.post("https://httpbin.org/post", payload);
         System.out.println("POST response: "+payload);
+
+        //TODO
+        //UserSessionGenerator userSessionGenerator = new UserSessionGenerator("", "");
+        //userSessionGenerator.postUserSessions();
     }
 }

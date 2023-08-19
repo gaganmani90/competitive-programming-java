@@ -1,4 +1,4 @@
-package design.usersession;
+package design.usersession.http;
 
 public interface APIOperations {
     String get(String url);

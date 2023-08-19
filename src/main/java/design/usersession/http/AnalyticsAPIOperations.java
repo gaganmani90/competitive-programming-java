@@ -1,5 +1,6 @@
-package design.usersession;
+package design.usersession.http;
 
+import design.usersession.http.APIOperations;
 import lombok.Data;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
