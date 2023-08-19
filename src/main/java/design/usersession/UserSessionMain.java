@@ -1,5 +1,7 @@
 package design.usersession;
 
+import net.sf.saxon.trans.SymbolicName;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -41,5 +43,13 @@ public class UserSessionMain {
         SessionManager sessionManager = new SessionManager();
         Map<String, List<Session>> response = EventTransformer.transform(sessionManager.readEvent(json));
         System.out.println(response);
+
+        FetchAndPostClient fetchAndPostClient = new FetchAndPostClient("https://httpbin.org/get");
+        String payload = fetchAndPostClient.fetchData();
+        System.out.println("GET response: "+payload);
+
+        fetchAndPostClient = new FetchAndPostClient("https://httpbin.org/post");
+        payload = fetchAndPostClient.postData(payload);
+        System.out.println("POST response: "+payload);
     }
 }
