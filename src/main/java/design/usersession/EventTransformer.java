@@ -2,8 +2,8 @@ package design.usersession;
 
 import java.util.*;
 
-public class EventTransformer {
-    public static Map<String, List<Session>> transform(List<PageEvent> events) {
+public class EventTransformer implements Transformer<List<PageEvent>, Map<String, List<Session>>>{
+    public Map<String, List<Session>> transform(List<PageEvent> events) {
         Map<String, List<Session>> sessionByUser = new HashMap<>();
         Map<String, List<PageEvent>> eventsByUser = new HashMap<>();
         for (PageEvent event : events) {

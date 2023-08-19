@@ -39,15 +39,14 @@ public class UserSessionMain {
             "]";
     public static void main(String[] args) throws IOException {
         SessionManager sessionManager = new SessionManager();
-        Map<String, List<Session>> response = EventTransformer.transform(sessionManager.readEvent(json));
+        Map<String, List<Session>> response = new EventTransformer().transform(sessionManager.readEvent(json));
         System.out.println(response);
 
-        FetchAndPostClient fetchAndPostClient = new FetchAndPostClient("https://httpbin.org/get");
-        String payload = fetchAndPostClient.fetchData();
+        AnalyticsAPIOperations fetchAndPostClient = new AnalyticsAPIOperations();
+        String payload = fetchAndPostClient.get("https://httpbin.org/get");
         System.out.println("GET response: "+payload);
 
-        fetchAndPostClient = new FetchAndPostClient("https://httpbin.org/post");
-        payload = fetchAndPostClient.postData(payload);
+        payload = fetchAndPostClient.post("https://httpbin.org/post", payload);
         System.out.println("POST response: "+payload);
     }
 }
