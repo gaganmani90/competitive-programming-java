@@ -29,9 +29,4 @@ public class ParseDataDemo {
 
         return map;
     }
-    public static void main(String[] args) {
-        String jsonData = "[{\"A\":\"a\", \"B\":\"b\"}]";
-        //output: {A=[a], B=[b]}
-        System.out.println(ParseDataDemo.parse(jsonData));
-    }
 }
